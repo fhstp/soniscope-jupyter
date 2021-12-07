@@ -1,0 +1,2 @@
+[run]
+omit = sonivis_lens_widget/tests/*
