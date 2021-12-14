@@ -11,6 +11,7 @@ import { MODULE_NAME, MODULE_VERSION } from './version';
 
 // Import the CSS
 import '../css/widget.css';
+import { renderChart } from './bubbleDemo';
 
 export class LensModel extends DOMWidgetModel {
   defaults() {
@@ -40,14 +41,22 @@ export class LensModel extends DOMWidgetModel {
 }
 
 export class LensView extends DOMWidgetView {
+  private _demoLabel: HTMLDivElement;
+
   render() {
-    this.el.classList.add('custom-widget');
+    this._demoLabel = document.createElement('div');
+    this._demoLabel.classList.add('custom-widget');
+    this.el.appendChild(this._demoLabel);
+
+    const d3div = document.createElement('div');
+    this.el.appendChild(d3div);
+    renderChart(d3div);
 
     this.value_changed();
     this.model.on('change:value', this.value_changed, this);
   }
 
   value_changed() {
-    this.el.textContent = this.model.get('value');
+    this._demoLabel.textContent = this.model.get('value');
   }
 }
