@@ -28,6 +28,12 @@ Create a dev environment:
 conda create -n sonivis_lens_widget-dev -c conda-forge nodejs yarn python jupyterlab
 conda activate sonivis_lens_widget-dev
 ```
+or
+```bash
+python -m venv venv
+pip install nodejs jupyterlab # jupyter-packaging
+source venv/Scripts/activate
+```
 
 Install the python. This will also build the TS package.
 ```bash
@@ -53,6 +59,8 @@ Note that the `--symlink` flag doesn't work on Windows, so you will here have to
 the `install` command every time that you rebuild your extension. For certain installations
 you might also need another flag instead of `--sys-prefix`, but we won't cover the meaning
 of those flags here.
+
+To use symlinks in Windows 10, you can turn on Windows' developer mode.
 
 ### How to see your changes
 #### Typescript:
