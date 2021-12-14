@@ -6,9 +6,9 @@
 
 import pytest
 
-from ..example import ExampleWidget
+from ..lens_widget import LensWidget
 
 
 def test_example_creation_blank():
-    w = ExampleWidget()
+    w = LensWidget()
     assert w.value == 'Hello World'
