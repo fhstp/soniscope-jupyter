@@ -41,7 +41,11 @@ jupyter notebook
 
 ## Step 2: Rename widget classes and components from Example... to Lens..
 
-n.b. also rename references in test and example code (otherwise the build action on GitHub fails)
+* Python part of widget: `sonivis_lens_widget/example.py`
+  * change the import in `sonivis_lens_widget/__init__.py`
+* JavaScript part of widget: `src/widget.ts`
+  * change the import in `src/index.ts`
+* n.b. also rename references in test and example code (otherwise the build action on GitHub fails)
 
 ## Step 3: integrate D3
 
@@ -86,3 +90,22 @@ mark.on('mouseenter', (evt, d: any) => {
   model.save_changes();
 });
 ```
+
+## Step ...: get mouse events out of LensWidget via event listener
+
+cp. tutorial <https://ipywidgets.readthedocs.io/en/latest/examples/Widget%20Events.html>
+
+## Step ...: get a complex object out of LensWidget
+
+> Warning: Syncing mutable types
+Please keep in mind that mutable types will not necessarily be synced when they are modified. For example appending an element to a list will not cause the changes to sync. Instead a new list must be created and assigned to the trait for the changes to be synced.
+An alternative would be to use a third-party library such as spectate, which tracks changes to mutable data types.
+
+
+## Step ...: get a table from python into the widget
+
+## Step ...: display scatterplot
+
+## Step ...: display a circle lens under mouse
+
+## Step ...:  transport only visual properties and ids between frontend and backend
