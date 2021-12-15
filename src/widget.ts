@@ -50,7 +50,7 @@ export class LensView extends DOMWidgetView {
 
     const d3div = document.createElement('div');
     this.el.appendChild(d3div);
-    renderChart(d3div);
+    renderChart(d3div, this.model);
 
     this.value_changed();
     this.model.on('change:value', this.value_changed, this);

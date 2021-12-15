@@ -1,11 +1,12 @@
 // BEGIN copy/paste from my playground
+import { WidgetModel } from '@jupyter-widgets/base';
 import * as d3 from 'd3';
 
 const width = 400;
 const height = 400;
 const MARKS = 16;
 
-export function renderChart(domElement: HTMLElement) {
+export function renderChart(domElement: HTMLElement, model: WidgetModel) {
   console.log('d3-----');
   console.log(domElement);
   const svg = d3
@@ -46,6 +47,16 @@ export function renderChart(domElement: HTMLElement) {
     .attr('cy', (d) => d.y)
     .attr('r', (d) => d.r)
     .attr('fill', (d: any) => color(d.data.type))
+    .on('mouseenter', (evt, d: any) => {
+      model.set('value', d.data.type);
+      model.save_changes();
+    })
+    .on('mouseleave', (evt, d: any) => {
+      if (model.get('value') == d.data.type) {
+        model.set('value', 'none');
+        model.save_changes();
+      }
+    })
     .append('title')
     .text((d: any) => d.data.type);
 }
