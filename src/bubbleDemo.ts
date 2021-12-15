@@ -6,15 +6,12 @@ const width = 400;
 const height = 400;
 const MARKS = 16;
 
-export function renderChart(domElement: HTMLElement, model: WidgetModel) {
-  console.log('d3-----');
-  console.log(domElement);
+export function renderChart(domElement: HTMLElement, model: WidgetModel): void {
   const svg = d3
     .select(domElement)
     .append('svg')
     .attr('width', width)
     .attr('height', height);
-  console.log(svg);
 
   // some fruits categories and a color scale
   const fruits = ['Apple', 'Banana', 'Cherry', 'Orange'];
@@ -52,7 +49,7 @@ export function renderChart(domElement: HTMLElement, model: WidgetModel) {
       model.save_changes();
     })
     .on('mouseleave', (evt, d: any) => {
-      if (model.get('value') == d.data.type) {
+      if (model.get('value') === d.data.type) {
         model.set('value', 'none');
         model.save_changes();
       }
