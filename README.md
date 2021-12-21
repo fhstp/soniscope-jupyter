@@ -31,8 +31,8 @@ conda activate sonivis_lens_widget-dev
 or
 ```bash
 python -m venv venv
-pip install nodejs jupyterlab # jupyter-packaging
 source venv/Scripts/activate
+pip install nodejs jupyterlab jupyter-packaging
 ```
 
 Install the python. This will also build the TS package.
