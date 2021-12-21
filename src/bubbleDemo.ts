@@ -1,12 +1,16 @@
 // BEGIN copy/paste from my playground
-import { WidgetModel } from '@jupyter-widgets/base';
+import { DOMWidgetView, WidgetModel } from '@jupyter-widgets/base';
 import * as d3 from 'd3';
 
 const width = 400;
 const height = 400;
 const MARKS = 16;
 
-export function renderChart(domElement: HTMLElement, model: WidgetModel): void {
+export function renderChart(
+  domElement: HTMLElement,
+  model: WidgetModel,
+  view: DOMWidgetView
+): void {
   const svg = d3
     .select(domElement)
     .append('svg')
@@ -53,6 +57,10 @@ export function renderChart(domElement: HTMLElement, model: WidgetModel): void {
         model.set('value', 'none');
         model.save_changes();
       }
+    })
+    .on('click', (evt, d: any) => {
+      console.log('clicked on ' + d.data.type + ' ' + d.data.count);
+      view.send({ event: 'click', fruit: d.data.type, count: d.data.count });
     })
     .append('title')
     .text((d: any) => d.data.type);

@@ -91,9 +91,29 @@ mark.on('mouseenter', (evt, d: any) => {
 });
 ```
 
-## Step ...: get mouse events out of LensWidget via event listener
+## Step 5: get mouse events out of LensWidget via message
 
-cp. tutorial <https://ipywidgets.readthedocs.io/en/latest/examples/Widget%20Events.html>
+The standard button widget has an `on_click` method that allows you to listen for the user clicking on the button.
+The click event itself is **stateless**.
+
+cp. implementation of standard button widget
+- Python: <https://github.com/jupyter-widgets/ipywidgets/blob/master/python/ipywidgets/ipywidgets/widgets/widget_button.py>
+- JavaScript: <https://github.com/jupyter-widgets/ipywidgets/blob/master/packages/controls/src/widget_button.ts>
+
+We can listen directly on frontend messages received in the user code:
+```python
+def on_button_clicked(widget, payload, _b):
+    with output:
+        print(widget, payload)
+
+source.on_msg(on_button_clicked)
+```
+
+The frontend `LensView` simply calls:
+```javascript
+  view.send({ event: 'click', fruit: d.data.type, count: d.data.count });
+```
+No change in class `LensModel`.
 
 ## Step ...: get a complex object out of LensWidget
 
@@ -109,3 +129,5 @@ An alternative would be to use a third-party library such as spectate, which tra
 ## Step ...: display a circle lens under mouse
 
 ## Step ...:  transport only visual properties and ids between frontend and backend
+
+maybe use send() like for button click event
