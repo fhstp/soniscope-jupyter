@@ -115,6 +115,20 @@ The frontend `LensView` simply calls:
 ```
 No change in class `LensModel`.
 
+## Step 6: get mouse events out of LensWidget via event listener
+
+If additional data transformation is needed on the backend side, we can adapt 3 functions from
+<https://github.com/jupyter-widgets/ipywidgets/blob/master/python/ipywidgets/ipywidgets/widgets/widget_button.py>
+into class LensWidget:
+
+```python
+from ipywidgets import DOMWidget, CallbackDispatcher
+
+[...]
+```
+
+No changes to the TypeScript frontend.
+
 ## Step ...: get a complex object out of LensWidget
 
 > Warning: Syncing mutable types
