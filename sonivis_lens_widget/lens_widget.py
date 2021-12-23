@@ -23,7 +23,7 @@ class LensWidget(DOMWidget):
     _view_module = Unicode(module_name).tag(sync=True)
     _view_module_version = Unicode(module_version).tag(sync=True)
 
-    value = Unicode('Hello World').tag(sync=True)
+    value = Unicode('none').tag(sync=True)
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)

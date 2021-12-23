@@ -11,7 +11,7 @@ import { MODULE_NAME, MODULE_VERSION } from './version';
 
 // Import the CSS
 import '../css/widget.css';
-import { renderChart } from './bubbleDemo';
+import { hightlight, renderChart } from './bubbleDemo';
 
 export class LensModel extends DOMWidgetModel {
   defaults() {
@@ -23,7 +23,7 @@ export class LensModel extends DOMWidgetModel {
       _view_name: LensModel.view_name,
       _view_module: LensModel.view_module,
       _view_module_version: LensModel.view_module_version,
-      value: 'Hello World',
+      value: 'none',
     };
   }
 
@@ -41,22 +41,23 @@ export class LensModel extends DOMWidgetModel {
 }
 
 export class LensView extends DOMWidgetView {
-  private _demoLabel: HTMLDivElement;
+  // private _demoLabel: HTMLDivElement;
 
   render() {
-    this._demoLabel = document.createElement('div');
-    this._demoLabel.classList.add('custom-widget');
-    this.el.appendChild(this._demoLabel);
+    // this._demoLabel = document.createElement('div');
+    // this._demoLabel.classList.add('custom-widget');
+    // this.el.appendChild(this._demoLabel);
 
-    const d3div = document.createElement('div');
-    this.el.appendChild(d3div);
-    renderChart(d3div, this.model, this);
+    // const d3div = document.createElement('div');
+    // this.el.appendChild(d3div);
+    renderChart(this.el, this.model, this);
 
     this.value_changed();
     this.model.on('change:value', this.value_changed, this);
   }
 
   value_changed() {
-    this._demoLabel.textContent = this.model.get('value');
+    // this._demoLabel.textContent = this.model.get('value');
+    hightlight(this.el, this.model.get('value'));
   }
 }

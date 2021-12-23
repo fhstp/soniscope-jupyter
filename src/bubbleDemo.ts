@@ -19,7 +19,12 @@ export function renderChart(
 
   // some fruits categories and a color scale
   const fruits = ['Apple', 'Banana', 'Cherry', 'Orange'];
-  const color = d3.scaleOrdinal(d3.schemeCategory10);
+  const color = d3.scaleOrdinal([
+    d3.schemeTableau10[4],
+    d3.schemeTableau10[5],
+    d3.schemeTableau10[2],
+    d3.schemeTableau10[1],
+  ]);
   appendLegend(svg, fruits, color);
 
   // random generate fruit items
@@ -64,6 +69,15 @@ export function renderChart(
     })
     .append('title')
     .text((d: any) => d.data.type);
+}
+
+export function hightlight(domElement: HTMLElement, value: string) {
+  d3.select(domElement)
+    .selectAll('circle')
+    .attr('stroke-width', '3px')
+    .attr('stroke', (d: any) =>
+      d.data.type === value ? d3.schemeTableau10[0] : 'none'
+    );
 }
 
 function appendLegend(
