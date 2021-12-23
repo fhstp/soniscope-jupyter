@@ -33,11 +33,16 @@ jupyter nbextension enable --sys-prefix --py sonivis_lens_widget
 
 ```
 
-in the other project:
-
 ```bash
 jupyter notebook
 ```
+
+*Update:* `yarn` was required to build.
+Either install it globally, install it inside the project's `node_modules`
+```bash
+npm install yarn
+```
+or we adapt the scripts in `package.json` to try without it (preferred).
 
 ## Step 2: Rename widget classes and components from Example... to Lens..
 
