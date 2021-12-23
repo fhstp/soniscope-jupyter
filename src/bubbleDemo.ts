@@ -71,7 +71,7 @@ export function renderChart(
     .text((d: any) => d.data.type);
 }
 
-export function hightlight(domElement: HTMLElement, value: string) {
+export function hightlight(domElement: HTMLElement, value: string): void {
   d3.select(domElement)
     .selectAll('circle')
     .attr('stroke-width', '3px')

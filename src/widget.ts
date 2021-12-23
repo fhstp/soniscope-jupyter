@@ -14,7 +14,7 @@ import '../css/widget.css';
 import { hightlight, renderChart } from './bubbleDemo';
 
 export class LensModel extends DOMWidgetModel {
-  defaults() {
+  defaults(): any {
     return {
       ...super.defaults(),
       _model_name: LensModel.model_name,
@@ -43,7 +43,7 @@ export class LensModel extends DOMWidgetModel {
 export class LensView extends DOMWidgetView {
   // private _demoLabel: HTMLDivElement;
 
-  render() {
+  render(): void {
     // this._demoLabel = document.createElement('div');
     // this._demoLabel.classList.add('custom-widget');
     // this.el.appendChild(this._demoLabel);
@@ -56,7 +56,7 @@ export class LensView extends DOMWidgetView {
     this.model.on('change:value', this.value_changed, this);
   }
 
-  value_changed() {
+  value_changed(): void {
     // this._demoLabel.textContent = this.model.get('value');
     hightlight(this.el, this.model.get('value'));
   }

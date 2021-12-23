@@ -13,7 +13,7 @@ describe('LensWidget', () => {
     it('should be createable', () => {
       const model = createTestModel(LensModel);
       expect(model).toBeInstanceOf(LensModel);
-      expect(model.get('value')).toEqual('Hello World');
+      expect(model.get('value')).toEqual('none');
     });
 
     it('should be createable with a value', () => {

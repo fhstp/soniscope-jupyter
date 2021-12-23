@@ -11,4 +11,4 @@ from ..lens_widget import LensWidget
 
 def test_example_creation_blank():
     w = LensWidget()
-    assert w.value == 'Hello World'
+    assert w.value == 'none'
