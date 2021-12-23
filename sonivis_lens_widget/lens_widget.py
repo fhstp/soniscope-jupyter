@@ -8,11 +8,11 @@
 TODO: Add module docstring
 """
 
-from ipywidgets import DOMWidget, CallbackDispatcher
+from ipywidgets import DOMWidget, CallbackDispatcher, register
 from traitlets import Unicode
 from ._frontend import module_name, module_version
 
-
+@register
 class LensWidget(DOMWidget):
     """TODO: Add docstring here
     """
