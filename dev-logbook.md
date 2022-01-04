@@ -134,16 +134,34 @@ from ipywidgets import DOMWidget, CallbackDispatcher
 
 No changes to the TypeScript frontend.
 
+## Step 7: get a table from python into the widget
+
+using Traitlets for
+- `data` a Pandas data frame, not synced
+- `x_field` string column name, synced for label
+- `_marks_x` list of x coordinates, private on Python side, synced to JavaScript
+
+```python
+w = LensWidget()
+w.set_data(daily, 'temp', 'hum')
+# or
+w = LensWidget()
+w.data = daily
+w.x_field = 'temp'
+w.y_field = 'hum'
+# or
+w = LensWidget(daily, 'temp', 'hum')
+```
+
+## Step 8: display scatterplot
+
+
 ## Step ...: get a complex object out of LensWidget
 
 > Warning: Syncing mutable types
 Please keep in mind that mutable types will not necessarily be synced when they are modified. For example appending an element to a list will not cause the changes to sync. Instead a new list must be created and assigned to the trait for the changes to be synced.
 An alternative would be to use a third-party library such as spectate, which tracks changes to mutable data types.
 
-
-## Step ...: get a table from python into the widget
-
-## Step ...: display scatterplot
 
 ## Step ...: display a circle lens under mouse
 
