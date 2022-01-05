@@ -153,6 +153,11 @@ w.y_field = 'hum'
 w = LensWidget(daily, 'temp', 'hum')
 ```
 
+Add `pandas` dependency to `pyproject.toml`:
+```
+requires = ["jupyter_packaging==0.7.9", "jupyterlab==3.*", "pandas>=1.3.0", "setuptools>=40.8.0", "wheel"]
+```
+
 ## Step 8: display scatterplot
 
 
