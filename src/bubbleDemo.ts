@@ -3,7 +3,7 @@ import { DOMWidgetView, WidgetModel } from '@jupyter-widgets/base';
 import * as d3 from 'd3';
 
 const width = 300;
-const height = 120;
+const height = 200;
 const MARKS = 16;
 
 export function renderChart(

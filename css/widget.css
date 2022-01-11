@@ -2,3 +2,15 @@
   background-color: lightseagreen;
   padding: 0px 2px;
 }
+
+.substrate .label {
+  font-size: 10px;
+  font-family: sans-serif;
+  color: #404040;
+}
+
+.substrate .axis {
+  font-size: 10px;
+  font-family: sans-serif;
+  color: #404040;
+}

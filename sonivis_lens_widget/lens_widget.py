@@ -65,7 +65,7 @@ class LensWidget(DOMWidget):
 
     @validate('data')
     def _valid_data(self, proposal):
-        print('§§lens§§ check data')
+        # print('§§lens§§ check data')
 
         if not (self.x_field == '' or self.x_field in proposal['value']):
             raise TraitError('The x field is not a column of the data frame.')
@@ -77,7 +77,7 @@ class LensWidget(DOMWidget):
 
     @validate('x_field')
     def _valid_x_field(self, proposal):
-        print('§§lens§§ check x')
+        # print('§§lens§§ check x')
         if not (proposal['value'] == '' or proposal['value'] in self.data):
             raise TraitError('The x field is not a column of the data frame.')
         return proposal['value']
@@ -90,14 +90,14 @@ class LensWidget(DOMWidget):
 
     @observe('data')
     def _observe_data(self, change):
-        print('§§lens§§ update data')
+        # print('§§lens§§ update data')
         if self.x_field != '' and self.y_field != '':
             self._marks_x = change.new[self.x_field].tolist()
             self._marks_y = change.new[self.y_field].tolist()
 
     @observe('x_field', 'y_field')
     def _observe_fields(self, change):
-        print('§§lens§§ update field ' + change.name + ' to ' + change.new)
+        # print('§§lens§§ update field ' + change.name + ' to ' + change.new)
         if change.new != '':
             if change.name == 'x_field':
                 self._marks_x = self.data[change.new].tolist()
