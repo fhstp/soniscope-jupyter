@@ -28,10 +28,10 @@ class LensWidget(DOMWidget):
     value = Unicode('none').tag(sync=True)
     """ experimental variable from tutorial """
 
-    x_field = Unicode().tag(sync=True)
-    """ column name used for x axis. While it is an empty string no marks are rendered. """
-    y_field = Unicode().tag(sync=True)
-    """ column name used for y axis. While it is an empty string no marks are rendered. """
+    x_field = Unicode('').tag(sync=True)
+    """ column name used for x axis. While it is an empty string no marks are rendered/updated. """
+    y_field = Unicode('').tag(sync=True)
+    """ column name used for y axis. While it is an empty string no marks are rendered/updated. """
     data = Instance(klass=pd.DataFrame)
 
     # value_trait=List(Float()), key_trait=Unicode()).tag(sync=True)
@@ -48,42 +48,61 @@ class LensWidget(DOMWidget):
         self.on_msg(self._handle_button_msg)
 
         # if isinstance(data, pd.DataFrame) == True:
-        if not data is None:
-            if x_field != None and y_field != None:
-                self.set_data(data, x_field, y_field)
-            else:
-                self.data = data
-        else:
+        if data is None:
             self.data = pd.DataFrame()
+        else:
+            if x_field == None and y_field == None:
+                self.data = data
+            else:
+                self.set_data(data, x_field, y_field)
 
     def set_data(self, data, x_field, y_field):
-        # if (not isinstance(data, pd.DataFrame)):
-        #     raise ValueError("LensWidget's data must be a data frame.")
-
+        self.x_field = ''
+        self.y_field = ''
         self.data = data
         self.x_field = x_field
         self.y_field = y_field
 
+    @validate('data')
+    def _valid_data(self, proposal):
+        print('§§lens§§ check data')
+
+        if not (self.x_field == '' or self.x_field in proposal['value']):
+            raise TraitError('The x field is not a column of the data frame.')
+
+        if not (self.y_field == '' or self.y_field in proposal['value']):
+            raise TraitError('The y field is not a column of the data frame.')
+
+        return proposal['value']
+
     @validate('x_field')
     def _valid_x_field(self, proposal):
         print('§§lens§§ check x')
-        if not proposal['value'] in self.data:
+        if not (proposal['value'] == '' or proposal['value'] in self.data):
             raise TraitError('The x field is not a column of the data frame.')
         return proposal['value']
 
     @validate('y_field')
     def _valid_y_field(self, proposal):
-        if not proposal['value'] in self.data:
+        if not (proposal['value'] == '' or proposal['value'] in self.data):
             raise TraitError('The y field is not a column of the data frame.')
         return proposal['value']
+
+    @observe('data')
+    def _observe_data(self, change):
+        print('§§lens§§ update data')
+        if self.x_field != '' and self.y_field != '':
+            self._marks_x = change.new[self.x_field].tolist()
+            self._marks_y = change.new[self.y_field].tolist()
 
     @observe('x_field', 'y_field')
     def _observe_fields(self, change):
         print('§§lens§§ update field ' + change.name + ' to ' + change.new)
-        if change.name == 'x_field':
-            self._marks_x = self.data[change.new].tolist()
-        else:
-            self._marks_y = self.data[change.new].tolist()
+        if change.new != '':
+            if change.name == 'x_field':
+                self._marks_x = self.data[change.new].tolist()
+            else:
+                self._marks_y = self.data[change.new].tolist()
 
     def on_click(self, callback, remove=False):
         """Register a callback to execute when the button is clicked.

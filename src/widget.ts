@@ -12,6 +12,7 @@ import { MODULE_NAME, MODULE_VERSION } from './version';
 // Import the CSS
 import '../css/widget.css';
 import { hightlight, renderChart } from './bubbleDemo';
+import { setupScatterPlot, updateScatterPlot } from './scatterPlot';
 
 export class LensModel extends DOMWidgetModel {
   defaults(): any {
@@ -24,6 +25,10 @@ export class LensModel extends DOMWidgetModel {
       _view_module: LensModel.view_module,
       _view_module_version: LensModel.view_module_version,
       value: 'none',
+      x_field: '',
+      y_field: '',
+      _marks_x: [] as number[],
+      _marks_y: [] as number[],
     };
   }
 
@@ -50,14 +55,22 @@ export class LensView extends DOMWidgetView {
 
     // const d3div = document.createElement('div');
     // this.el.appendChild(d3div);
+    // renderChart(d3div, this.model, this);
     renderChart(this.el, this.model, this);
+    setupScatterPlot(this);
 
     this.value_changed();
     this.model.on('change:value', this.value_changed, this);
+    this.model.on('change:_marks_x', this.value_changed, this);
+    this.model.on('change:_marks_y', this.value_changed, this);
   }
 
   value_changed(): void {
-    // this._demoLabel.textContent = this.model.get('value');
+    // this._demoLabel.textContent = JSON.stringify(this.model.get('_marks_x'));
+
+    console.log('field ' + this.model.get('x_field'));
+    console.log(this.model.get('_marks_x'));
     hightlight(this.el, this.model.get('value'));
+    updateScatterPlot(this);
   }
 }

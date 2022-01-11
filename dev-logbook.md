@@ -166,6 +166,10 @@ install_requires = [
 
 ## Step 8: display scatterplot
 
+Implementation decision: should we send data for each field separately?
+- separately causes larger number of repaints
+- together causes larger JSON payload when updating only parts of plot
+- currently not sending JSON as long as at least one field name is empty ('')
 
 ## Step ...: get a complex object out of LensWidget
 

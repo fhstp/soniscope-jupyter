@@ -2,8 +2,8 @@
 import { DOMWidgetView, WidgetModel } from '@jupyter-widgets/base';
 import * as d3 from 'd3';
 
-const width = 400;
-const height = 400;
+const width = 300;
+const height = 120;
 const MARKS = 16;
 
 export function renderChart(
@@ -46,9 +46,10 @@ export function renderChart(
   // simply draw circles
   // var node =
   svg
-    .selectAll('circle')
+    .selectAll('circle.bubble')
     .data(root.leaves())
     .join('circle')
+    .classed('bubble', true)
     .attr('cx', (d) => d.x)
     .attr('cy', (d) => d.y)
     .attr('r', (d) => d.r)
@@ -73,7 +74,7 @@ export function renderChart(
 
 export function hightlight(domElement: HTMLElement, value: string): void {
   d3.select(domElement)
-    .selectAll('circle')
+    .selectAll('circle.bubble')
     .attr('stroke-width', '3px')
     .attr('stroke', (d: any) =>
       d.data.type === value ? d3.schemeTableau10[0] : 'none'
