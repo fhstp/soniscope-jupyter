@@ -14,3 +14,26 @@
   font-family: sans-serif;
   color: #404040;
 }
+
+.substrate {
+  pointer-events: none;
+}
+
+.cursor.overlay {
+  pointer-events: all;
+  fill: none;
+  cursor: crosshair;
+  shape-rendering: auto;
+}
+
+.cursor.lens {
+  stroke: none;
+  fill: rgb(0, 0, 165);
+  opacity: 0;
+}
+
+.cursor.lens.active {
+  stroke: none;
+  fill: rgb(165, 0, 0);
+  opacity: 0;
+}

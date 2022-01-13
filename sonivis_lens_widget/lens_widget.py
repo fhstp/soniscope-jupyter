@@ -28,6 +28,8 @@ class LensWidget(DOMWidget):
     value = Unicode('none').tag(sync=True)
     """ experimental variable from tutorial """
 
+    diameter = Float(0.1).tag(sync=True)
+    """ size of the lens relative to smallest side of the widget """
     x_field = Unicode('').tag(sync=True)
     """ column name used for x axis. While it is an empty string no marks are rendered/updated. """
     y_field = Unicode('').tag(sync=True)

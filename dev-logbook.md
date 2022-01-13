@@ -136,6 +136,8 @@ No changes to the TypeScript frontend.
 
 ## Step 7: get a table from python into the widget
 
+We transport only visual properties and ids from backend to frontend.
+
 using Traitlets for
 - `data` a Pandas data frame, not synced
 - `x_field` string column name, synced for label
@@ -171,15 +173,40 @@ Implementation decision: should we send data for each field separately?
 - together causes larger JSON payload when updating only parts of plot
 - currently not sending JSON as long as at least one field name is empty ('')
 
+- [X] show data
+- [X] show axes and axes labels
+
+## Step 9: display a circle lens under mouse
+
+Events
+- mouseenter -> activate lens cursor
+- mouseleave -> deactivate lens cursor
+- mousemove -> update lens cursor
+- pointerup -> send event with data coordinates
+- wheel -> change diameter in model
+- diameter model change -> change lens cursor radius
+
+- [ ] square lens cursor
+- [ ] trigger visual pulse
+- [ ] move lens cursor to DOM toplevel to increase performance
+- [ ] resize diameter by multi-touch (cp. <https://observablehq.com/@d3/multitouch#cell-308>)
+- [ ] continuous events using dragging
+  - mousedown -> send event, trigger visual pulse , activate movelistener
+  - mousemove -> send event while dragging
+  - mouseuup -> send stop event
+- [ ] sync x, y position as traitlet --> postpone, not urgently needed
+
+## Step 10: react on click
+
+[X] pointerup -> view.send()
+[X] transform screen coordinates to data values
+[X] pass coordinates of center & edge to know lens size in both dimensions
+[ ] filter dataframe
+[ ] trigger custom event
+
+
 ## Step ...: get a complex object out of LensWidget
 
 > Warning: Syncing mutable types
 Please keep in mind that mutable types will not necessarily be synced when they are modified. For example appending an element to a list will not cause the changes to sync. Instead a new list must be created and assigned to the trait for the changes to be synced.
 An alternative would be to use a third-party library such as spectate, which tracks changes to mutable data types.
-
-
-## Step ...: display a circle lens under mouse
-
-## Step ...:  transport only visual properties and ids between frontend and backend
-
-maybe use send() like for button click event
