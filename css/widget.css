@@ -26,10 +26,10 @@
   shape-rendering: auto;
 }
 
-.cursor.lens {
+.cursor.lens * {
   stroke: none;
   fill: rgb(0, 0, 165);
-  opacity: 0;
+  /* opacity: 0; */
 }
 
 .cursor.lens.active {

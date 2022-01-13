@@ -186,7 +186,7 @@ Events
 - wheel -> change diameter in model
 - diameter model change -> change lens cursor radius
 
-- [ ] square lens cursor
+- [X] square lens cursor
 - [ ] trigger visual pulse
 - [ ] move lens cursor to DOM toplevel to increase performance
 - [ ] resize diameter by multi-touch (cp. <https://observablehq.com/@d3/multitouch#cell-308>)

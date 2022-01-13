@@ -30,6 +30,8 @@ class LensWidget(DOMWidget):
 
     diameter = Float(0.1).tag(sync=True)
     """ size of the lens relative to smallest side of the widget """
+    shape = Unicode('circle').tag(sync=True)
+    """ shape of the lens cursor, 'circle' or 'square' """
     x_field = Unicode('').tag(sync=True)
     """ column name used for x axis. While it is an empty string no marks are rendered/updated. """
     y_field = Unicode('').tag(sync=True)
@@ -58,12 +60,19 @@ class LensWidget(DOMWidget):
             else:
                 self.set_data(data, x_field, y_field)
 
-    def set_data(self, data, x_field, y_field):
+    def set_data(self, data: pd.DataFrame, x_field: str, y_field: str):
         self.x_field = ''
         self.y_field = ''
         self.data = data
         self.x_field = x_field
         self.y_field = y_field
+
+    @validate('shape')
+    def _valid_shape(self, proposal):
+        # print('§§lens§§ check x')
+        if not (proposal['value'] == 'circle' or proposal['value'] == 'square'):
+            raise TraitError('The shape can only be \'circle\' or \'square\'.')
+        return proposal['value']
 
     @validate('data')
     def _valid_data(self, proposal):

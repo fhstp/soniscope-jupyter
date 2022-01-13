@@ -30,7 +30,8 @@ export class LensModel extends DOMWidgetModel {
       y_field: '',
       _marks_x: [] as number[],
       _marks_y: [] as number[],
-      radius: 0.1,
+      diameter: 0.1,
+      shape: 'circle',
     };
   }
 
