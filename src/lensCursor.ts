@@ -33,6 +33,7 @@ export class LensCursor {
       .attr('transform', 'translate(0, 0)');
     this.updateLensShape();
     this.view.model.on('change:shape', () => this.updateLensShape(), this.view);
+    this.updateLensDiameter();
     this.view.model.on(
       'change:diameter',
       () => this.updateLensDiameter(),

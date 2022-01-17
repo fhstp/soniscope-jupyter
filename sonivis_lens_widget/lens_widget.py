@@ -48,8 +48,8 @@ class LensWidget(DOMWidget):
 
     def __init__(self, data=None, x_field=None, y_field=None, **kwargs):
         super().__init__(**kwargs)
-        self._click_handlers = CallbackDispatcher()
-        self.on_msg(self._handle_button_msg)
+        self._lens_click_handlers = CallbackDispatcher()
+        self.on_msg(self._handle_frontend_msg)
 
         # if isinstance(data, pd.DataFrame) == True:
         if data is None:
@@ -115,30 +115,44 @@ class LensWidget(DOMWidget):
             else:
                 self._marks_y = self.data[change.new].tolist()
 
-    def on_click(self, callback, remove=False):
-        """Register a callback to execute when the button is clicked.
-        The callback will be called with one argument, the clicked button
-        widget instance.
+    def on_lens_click(self, callback, remove=False):
+        """Register a callback to execute when the lens widget is clicked.
+        The callback will be called with three argument, x and y values
+        clicked and the filtered dataframe.
         Parameters
         ----------
         remove: bool (optional)
             Set to true to remove the callback from the list of callbacks.
         """
-        self._click_handlers.register_callback(callback, remove=remove)
+        self._lens_click_handlers.register_callback(callback, remove=remove)
 
-    def click(self):
-        """Programmatically trigger a click event.
-        This will call the callbacks registered to the clicked button
+    def lens_click(self, event: str, x: float, y: float, edgeX: float, edgeY: float):
+        """Programmatically trigger a lens click event.
+        This will call the callbacks registered to the clicked lens
         widget instance.
         """
-        self._click_handlers(self)
+        xRel = self.data[self.x_field] - x
+        xDist = edgeX - x
+        yRel = self.data[self.y_field] - y
+        yDist = edgeY - y
 
-    def _handle_button_msg(self, _, content, buffers):
+        if self.shape == 'square':
+            filtered = self.data.loc[
+                (xRel.abs() <= xDist) & (yRel.abs() <= yDist)]
+            self._lens_click_handlers(self, x, y, filtered)
+        elif self.shape == 'circle':
+            filtered = self.data.loc[
+                xRel**2 / xDist**2 + yRel**2 / yDist**2 <= 1]
+            self._lens_click_handlers(self, x, y, filtered)
+        else:
+            raise TraitError('Other lens shape not supported yet')
+
+    def _handle_frontend_msg(self, _widget, payload, _buffers):
         """Handle a msg from the front-end.
         Parameters
         ----------
-        content: dict
+        payload: dict
             Content of the msg.
         """
-        if content.get('event', '') == 'click':
-            self.click()
+        if payload.get('event', '') == 'lens':
+            self.lens_click(**payload)

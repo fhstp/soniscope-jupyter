@@ -182,7 +182,7 @@ Events
 - mouseenter -> activate lens cursor
 - mouseleave -> deactivate lens cursor
 - mousemove -> update lens cursor
-- pointerup -> send event with data coordinates
+- pointerdown -> send event with data coordinates
 - wheel -> change diameter in model
 - diameter model change -> change lens cursor radius
 
@@ -190,20 +190,22 @@ Events
 - [ ] trigger visual pulse
 - [ ] move lens cursor to DOM toplevel to increase performance
 - [ ] resize diameter by multi-touch (cp. <https://observablehq.com/@d3/multitouch#cell-308>)
-- [ ] continuous events using dragging
-  - mousedown -> send event, trigger visual pulse , activate movelistener
-  - mousemove -> send event while dragging
-  - mouseuup -> send stop event
 - [ ] sync x, y position as traitlet --> postpone, not urgently needed
 
 ## Step 10: react on click
 
-[X] pointerup -> view.send()
-[X] transform screen coordinates to data values
-[X] pass coordinates of center & edge to know lens size in both dimensions
-[ ] filter dataframe
-[ ] trigger custom event
+- [X] pointerdown -> view.send()
+- [X] transform screen coordinates to data values
+- [X] pass coordinates of center & edge to know lens size in both dimensions
+- [X] filter dataframe
+- [X] trigger custom event
 
+## Step ...: continuous events using dragging
+
+Events
+- mousedown -> send event, trigger visual pulse , activate movelistener
+- mousemove -> send event while dragging
+- mouseuup -> send stop event
 
 ## Step ...: get a complex object out of LensWidget
 
