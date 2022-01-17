@@ -11,7 +11,7 @@ export class LensCursor {
   private selLens: any;
 
   private smallerSize = 100;
-  private rPixels: number;
+  private rPixels = 10;
   public transform = (x: number, y: number): { x: number; y: number } => {
     return { x, y };
   };

@@ -37,12 +37,9 @@ export class ScatterPlot {
     g.append('g').attr('class', 'y axis').call(d3.axisLeft(y));
 
     this.lensCursor = new LensCursor(view, g, width, height);
-    console.log('end constr');
   }
 
   public updateScatterPlot(view: DOMWidgetView): void {
-    console.log('%% updated scatter ');
-
     const xValues = view.model.get('_marks_x') as number[];
     const yValues = view.model.get('_marks_y') as number[];
 
