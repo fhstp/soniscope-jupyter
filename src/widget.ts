@@ -1,5 +1,5 @@
-// Copyright (c) Alexander Rind
-// Distributed under the terms of the Modified BSD License.
+// Copyright (c) Alexander Rind & the SoniVis team.
+// Distributed under the terms of the MIT License (see LICENSE.txt).
 
 import {
   DOMWidgetModel,
@@ -11,9 +11,7 @@ import { MODULE_NAME, MODULE_VERSION } from './version';
 
 // Import the CSS
 import '../css/widget.css';
-import { hightlight, renderChart } from './bubbleDemo';
 import { ScatterPlot } from './scatterPlot';
-// import { updateLensDiameter } from './lensCursor';
 
 export class LensModel extends DOMWidgetModel {
   defaults(): any {
@@ -25,7 +23,7 @@ export class LensModel extends DOMWidgetModel {
       _view_name: LensModel.view_name,
       _view_module: LensModel.view_module,
       _view_module_version: LensModel.view_module_version,
-      value: 'none',
+
       x_field: '',
       y_field: '',
       _marks_x: [] as number[],
@@ -49,33 +47,19 @@ export class LensModel extends DOMWidgetModel {
 }
 
 export class LensView extends DOMWidgetView {
-  // private _demoLabel: HTMLDivElement;
   private scatterPlot: ScatterPlot;
 
   render(): void {
-    // this._demoLabel = document.createElement('div');
-    // this._demoLabel.classList.add('custom-widget');
-    // this.el.appendChild(this._demoLabel);
-
-    // const d3div = document.createElement('div');
-    // this.el.appendChild(d3div);
-    // renderChart(d3div, this.model, this);
-    renderChart(this.el, this.model, this);
-    // setupScatterPlot(this);
     this.scatterPlot = new ScatterPlot(this);
 
     this.value_changed();
-    this.model.on('change:value', this.value_changed, this);
     this.model.on('change:_marks_x', this.value_changed, this);
     this.model.on('change:_marks_y', this.value_changed, this);
   }
 
   value_changed(): void {
-    // this._demoLabel.textContent = JSON.stringify(this.model.get('_marks_x'));
-
-    console.log('field ' + this.model.get('x_field'));
-    console.log(this.model.get('_marks_x'));
-    hightlight(this.el, this.model.get('value'));
+    // console.log('field ' + this.model.get('x_field'));
+    // console.log(this.model.get('_marks_x'));
     this.scatterPlot.updateScatterPlot(this);
   }
 }

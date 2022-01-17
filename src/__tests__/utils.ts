@@ -53,8 +53,9 @@ export class DummyManager extends widgets.ManagerBase<HTMLElement> {
   display_view(
     msg: services.KernelMessage.IMessage,
     view: widgets.DOMWidgetView,
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     options: any
-  ) {
+  ): Promise<HTMLElement> {
     // TODO: make this a spy
     // TODO: return an html element
     return Promise.resolve(view).then((view) => {
@@ -86,10 +87,12 @@ export class DummyManager extends widgets.ManagerBase<HTMLElement> {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   _get_comm_info() {
     return Promise.resolve({});
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   _create_comm() {
     return Promise.resolve(new MockComm());
   }
@@ -105,6 +108,7 @@ export interface Constructor<T> {
 
 export function createTestModel<T extends widgets.WidgetModel>(
   constructor: Constructor<T>,
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   attributes?: any
 ): T {
   const id = widgets.uuid();

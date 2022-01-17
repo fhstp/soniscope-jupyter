@@ -200,12 +200,22 @@ Events
 - [X] filter dataframe
 - [X] trigger custom event
 
+## Step 11: document & clean-up
+
+- [X] make MIT license and copyright consistently
+- [X] remove packed bubble chart demo
+
 ## Step ...: continuous events using dragging
 
 Events
 - mousedown -> send event, trigger visual pulse , activate movelistener
 - mousemove -> send event while dragging
 - mouseuup -> send stop event
+
+
+## Step ...: maintain state
+
+check `serializers` in `widget.ts`
 
 ## Step ...: get a complex object out of LensWidget
 

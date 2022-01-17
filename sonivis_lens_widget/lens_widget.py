@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# Copyright (c) Alexander Rind.
-# Distributed under the terms of the Modified BSD License.
+# Copyright (c) Alexander Rind & the SoniVis team.
+# Distributed under the terms of the MIT License (see LICENSE.txt).
 
 """
-TODO: Add module docstring
+jupyter widget that shows a scatter plot with a lens and fires an event with filtered data whenever the plot is clicked
 """
 
 from ipywidgets import DOMWidget, CallbackDispatcher, register
@@ -16,7 +16,8 @@ import pandas as pd
 
 @register
 class LensWidget(DOMWidget):
-    """TODO: Add docstring here
+    """
+    jupyter widget that shows a scatter plot with a lens and fires an event with filtered data whenever the plot is clicked
     """
     _model_name = Unicode('LensModel').tag(sync=True)
     _model_module = Unicode(module_name).tag(sync=True)
@@ -24,9 +25,6 @@ class LensWidget(DOMWidget):
     _view_name = Unicode('LensView').tag(sync=True)
     _view_module = Unicode(module_name).tag(sync=True)
     _view_module_version = Unicode(module_version).tag(sync=True)
-
-    value = Unicode('none').tag(sync=True)
-    """ experimental variable from tutorial """
 
     diameter = Float(0.1).tag(sync=True)
     """ size of the lens relative to smallest side of the widget """
@@ -37,6 +35,7 @@ class LensWidget(DOMWidget):
     y_field = Unicode('').tag(sync=True)
     """ column name used for y axis. While it is an empty string no marks are rendered/updated. """
     data = Instance(klass=pd.DataFrame)
+    """ pandas dataframe to be displayed """
 
     # value_trait=List(Float()), key_trait=Unicode()).tag(sync=True)
     # _marks = Dict(traits={'x': List(Float()),
@@ -61,6 +60,9 @@ class LensWidget(DOMWidget):
                 self.set_data(data, x_field, y_field)
 
     def set_data(self, data: pd.DataFrame, x_field: str, y_field: str):
+        """
+        sets data frame and columns used for axes at the same time
+        """
         self.x_field = ''
         self.y_field = ''
         self.data = data

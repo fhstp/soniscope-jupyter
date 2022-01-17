@@ -1,5 +1,5 @@
-// Copyright (c) Alexander Rind
-// Distributed under the terms of the Modified BSD License.
+// Copyright (c) Alexander Rind & the SoniVis team.
+// Distributed under the terms of the MIT License (see LICENSE.txt).
 
 import { Application, IPlugin } from '@phosphor/application';
 

@@ -1,10 +1,9 @@
-// Copyright (c) Alexander Rind
-// Distributed under the terms of the Modified BSD License.
+// Copyright (c) Alexander Rind & the SoniVis team.
+// Distributed under the terms of the MIT License (see LICENSE.txt).
 
 import { DOMWidgetView } from '@jupyter-widgets/base';
 import * as d3 from 'd3';
 
-// const RADIUS = 20;
 const DEFAULT_OPACITY = 0.3;
 
 export class LensCursor {
@@ -94,37 +93,15 @@ export class LensCursor {
         });
       });
 
-    // function mousemove(event: any) {
-    //   // recover coordinate we need
-    //   const rawX = d3.pointer(event)[0];
-    //   const rawY = d3.pointer(event)[1];
-    //   // if (rawX < 0 || rawY < 0) return;
-    //   // // delegate coordinate transformations to caller
-    //   // const t = transform(rawX, rawY);
-    //   // console.log(t);
-
-    //   circle.attr('cx', rawX).attr('cy', rawY);
-
-    //   // // move the line in ALL plots together
-    //   // d3.selectAll(".stdline line.cursor")
-    //   // 	.attr("x1", t.x)
-    //   // 	.attr("x2", t.x);
-    // }
-
-    //   function mousedown(event: any) {
-    //     // event.preventDefault();
-    //     circle.classed('active', true);
-    //   }
-
     // TODO change lense diameter by multi-touch cp. <https://observablehq.com/@d3/multitouch#cell-308>
   }
 
   private updateLensDiameter() {
     const diameter = this.view.model.get('diameter') as number;
-    console.log('client swidth ', this.smallerSize);
+    // console.log('client swidth ', this.smallerSize);
     this.rPixels = (diameter * this.smallerSize) / 2.0;
     // this.selLens.attr('r', this.rPixels);
-    console.log(this.selLens.selectAll('*'));
+    // console.log(this.selLens.selectAll('*'));
     this.selLens.selectAll('*').attr('transform', `scale(${this.rPixels})`);
   }
 
@@ -147,21 +124,3 @@ export function removeLensCursor(
 ): void {
   gPlot.selectAll('.cursor').remove();
 }
-
-// /**
-//  * adds a cursor that follows the mouse's x position
-//  * @param gPlot
-//  * @param areaWidth
-//  * @param areaHeight
-//  * @param transform
-//  */
-// export function addLensCursor(
-//   gPlot: d3.Selection<d3.BaseType, any, any, any>,
-//   areaWidth: number,
-//   areaHeight: number,
-//   view: DOMWidgetView,
-//   transform: (rawX: number, rawY: number) => { x: number; y: number }
-// ): void {
-//   // first clean up any left overs
-//   removeLensCursor(gPlot);
-// }

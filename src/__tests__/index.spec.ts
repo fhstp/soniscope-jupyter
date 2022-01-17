@@ -13,14 +13,14 @@ describe('LensWidget', () => {
     it('should be createable', () => {
       const model = createTestModel(LensModel);
       expect(model).toBeInstanceOf(LensModel);
-      expect(model.get('value')).toEqual('none');
+      expect(model.get('x_field')).toEqual('');
     });
 
-    it('should be createable with a value', () => {
-      const state = { value: 'Foo Bar!' };
-      const model = createTestModel(LensModel, state);
-      expect(model).toBeInstanceOf(LensModel);
-      expect(model.get('value')).toEqual('Foo Bar!');
-    });
+    // it('should be createable with a value', () => {
+    //   const state = { value: 'foo' };
+    //   const model = createTestModel(LensModel, state);
+    //   expect(model).toBeInstanceOf(LensModel);
+    //   expect(model.get('x_field')).toEqual('foo');
+    // });
   });
 });

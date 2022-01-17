@@ -1,3 +1,6 @@
+// Copyright (c) Alexander Rind & the SoniVis team.
+// Distributed under the terms of the MIT License (see LICENSE.txt).
+
 import { DOMWidgetView } from '@jupyter-widgets/base';
 import * as d3 from 'd3';
 import { LensCursor } from './lensCursor';
@@ -50,19 +53,9 @@ export class ScatterPlot {
       return { x: xScale.invert(x), y: yScale.invert(y) };
     };
 
-    console.log('%% length x: ' + xValues.length + ' , y: ' + yValues.length);
+    // console.log('%% length x: ' + xValues.length + ' , y: ' + yValues.length);
 
     const gSubstrate = d3.select(view.el).select('g.substrate');
-
-    // addLensCursor(gSubstrate, width, height, view, (rawX, rawY) => {
-    //   const xCenter = x.invert(rawX);
-    //   const yCenter = y.invert(rawY);
-
-    //   return {
-    //     x: xCenter,
-    //     y: yCenter,
-    //   };
-    // });
 
     // add the scatterplot without data transformations
     // <https://stackoverflow.com/a/17872039/1140589>

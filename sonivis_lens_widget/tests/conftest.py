@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# Copyright (c) Alexander Rind.
-# Distributed under the terms of the Modified BSD License.
+# Copyright (c) Alexander Rind & the SoniVis team.
+# Distributed under the terms of the MIT License (see LICENSE.txt).
 
 import pytest
 

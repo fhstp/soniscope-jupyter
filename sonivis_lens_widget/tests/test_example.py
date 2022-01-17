@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# Copyright (c) Alexander Rind.
-# Distributed under the terms of the Modified BSD License.
+# Copyright (c) Alexander Rind & the SoniVis team.
+# Distributed under the terms of the MIT License (see LICENSE.txt).
 
 import pytest
 import pandas as pd
@@ -16,7 +16,6 @@ df = pd.DataFrame({'var1': {0: 1, 1: 2, 2: 3, 3: 4, 4: 5},
 
 def test_example_creation_blank():
     w = LensWidget()
-    assert w.value == 'none'
     assert w.data.size == 0
     assert len(w._marks_x) == 0
 
@@ -28,14 +27,12 @@ def test_widget_create_other_datatype():
 
 def test_example_creation_w_data():
     w = LensWidget(df)
-    assert w.value == 'none'
     assert w.data.size == df.size
     assert len(w._marks_x) == 0
 
 
 def test_example_creation_full():
     w = LensWidget(df, 'var1', 'var2')
-    assert w.value == 'none'
     assert w.data.size == df.size
     assert len(w._marks_x) == len(df.index)
 
