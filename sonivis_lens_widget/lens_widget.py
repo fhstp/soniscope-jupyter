@@ -12,6 +12,7 @@ from ipywidgets import DOMWidget, CallbackDispatcher, register
 from traitlets import Unicode, Instance, List, Float, observe, validate, TraitError
 from ._frontend import module_name, module_version
 import pandas as pd
+import numpy as np
 
 
 @register
@@ -134,20 +135,21 @@ class LensWidget(DOMWidget):
         widget instance.
         """
         xRel = self.data[self.x_field] - x
-        xDist = edgeX - x
+        xRad = edgeX - x
         yRel = self.data[self.y_field] - y
-        yDist = edgeY - y
+        yRad = edgeY - y
 
         if self.shape == 'square':
-            filtered = self.data.loc[
-                (xRel.abs() <= xDist) & (yRel.abs() <= yDist)]
-            self._lens_click_handlers(self, x, y, filtered)
+            distances = np.maximum(xRel.abs() / xRad, yRel.abs() / yRad)
         elif self.shape == 'circle':
-            filtered = self.data.loc[
-                xRel**2 / xDist**2 + yRel**2 / yDist**2 <= 1]
-            self._lens_click_handlers(self, x, y, filtered)
+            distances = np.sqrt(xRel**2 / xRad**2 + yRel**2 / yRad**2)
+            # filtered = self.data.loc[distances <= 1]
+            # self._lens_click_handlers(self, x, y, filtered, distances)
         else:
             raise TraitError('Other lens shape not supported yet')
+
+        filtered = self.data.loc[distances <= 1]
+        self._lens_click_handlers(self, x, y, filtered, distances)
 
     def _handle_frontend_msg(self, _widget, payload, _buffers):
         """Handle a msg from the front-end.
