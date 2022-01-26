@@ -27,7 +27,7 @@ class LensWidget(DOMWidget):
     _view_module = Unicode(module_name).tag(sync=True)
     _view_module_version = Unicode(module_version).tag(sync=True)
 
-    diameter = Float(0.1).tag(sync=True)
+    size = Float(0.1).tag(sync=True)
     """ size of the lens relative to smallest side of the widget """
     shape = Unicode('circle').tag(sync=True)
     """ shape of the lens cursor, 'circle' or 'square' """

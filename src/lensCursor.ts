@@ -32,12 +32,8 @@ export class LensCursor {
       .attr('transform', 'translate(0, 0)');
     this.updateLensShape();
     this.view.model.on('change:shape', () => this.updateLensShape(), this.view);
-    this.updateLensDiameter();
-    this.view.model.on(
-      'change:diameter',
-      () => this.updateLensDiameter(),
-      this.view
-    );
+    this.updateLensSize();
+    this.view.model.on('change:size', () => this.updateLensSize(), this.view);
 
     // add invisible rect to track mouse position (as last svg element)
     gPlot
@@ -54,15 +50,23 @@ export class LensCursor {
       .on('mouseleave', () => {
         this.selLens.style('opacity', 0);
       })
-      .on('wheel', (evt: WheelEvent) => {
-        evt.preventDefault();
-        const oldDiameter = this.view.model.get('diameter') as number;
-        const scaledDiameter = oldDiameter * Math.pow(1.25, evt.deltaY / -100);
-        const newDiameter = Math.min(1, Math.max(0.01, scaledDiameter));
-        //   console.log(evt, newDiameter);
-        this.view.model.set('diameter', newDiameter);
-        this.view.model.save_changes();
-      })
+      .on(
+        'wheel',
+        (evt: WheelEvent) => {
+          evt.preventDefault();
+          evt.stopPropagation();
+          // TODO prevent screen from scrolling on Firefox
+          const oldLensSize = this.view.model.get('size') as number;
+          const scaledLensSize =
+            oldLensSize * Math.pow(1.25, evt.deltaY / -100);
+          const newLensSize = Math.min(1.5, Math.max(0.01, scaledLensSize));
+          // console.log('g', evt, newLensSize);
+          this.view.model.set('size', newLensSize);
+          this.view.model.save_changes();
+          return false;
+        },
+        { passive: false }
+      )
       .on('mousemove', (evt: MouseEvent) => {
         const rawX = d3.pointer(evt)[0];
         const rawY = d3.pointer(evt)[1];
@@ -93,13 +97,13 @@ export class LensCursor {
         });
       });
 
-    // TODO change lense diameter by multi-touch cp. <https://observablehq.com/@d3/multitouch#cell-308>
+    // TODO change lense size by multi-touch cp. <https://observablehq.com/@d3/multitouch#cell-308>
   }
 
-  private updateLensDiameter() {
-    const diameter = this.view.model.get('diameter') as number;
+  private updateLensSize() {
+    const lensSize = this.view.model.get('size') as number;
     // console.log('client swidth ', this.smallerSize);
-    this.rPixels = (diameter * this.smallerSize) / 2.0;
+    this.rPixels = (lensSize * this.smallerSize) / 2.0;
     // this.selLens.attr('r', this.rPixels);
     // console.log(this.selLens.selectAll('*'));
     this.selLens.selectAll('*').attr('transform', `scale(${this.rPixels})`);
