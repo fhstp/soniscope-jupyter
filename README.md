@@ -21,6 +21,12 @@ the nbextension:
 jupyter nbextension enable --py [--sys-prefix|--user|--system] sonivis_lens_widget
 ```
 
+You can upgrade using `pip`:
+
+```bash
+pip install sonivis_lens_widget --upgrade --upgrade-strategy only-if-needed
+```
+
 ## Development Installation
 
 Create a dev environment:

@@ -205,6 +205,15 @@ Events
 - [X] make MIT license and copyright consistently
 - [X] remove packed bubble chart demo
 
+Deploy to pypi (cp. <https://towardsdatascience.com/how-to-build-your-first-python-package-6a00b02635c9>):
+
+```
+pip install twine
+python setup.py sdist bdist_wheel
+twine check dist/sonivis_lens_widget-0.1.2.dev0*
+twine upload dist/sonivis_lens_widget-0.1.2.dev0*
+```
+
 ## Step 12: feature requests
 
 - [X] include distance in triggered event
