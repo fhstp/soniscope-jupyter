@@ -205,6 +205,17 @@ Events
 - [X] make MIT license and copyright consistently
 - [X] remove packed bubble chart demo
 
+## Step 12: feature requests
+
+- [X] include distance in triggered event
+- [X] calculate distance in terms of a growing rectangle
+- [X] rename diameter to size
+
+Bugfixes
+
+- [ ] bei touch auch die Linsenposition setzen ODER linsen verschiebung auch bei touch move
+- [ ] mousewheel triggers scroll on Firefox ()
+
 ## Step ...: continuous events using dragging
 
 Events
