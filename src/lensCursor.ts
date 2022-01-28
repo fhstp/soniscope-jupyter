@@ -132,6 +132,8 @@ export class LensCursor {
       this.selLens.html(
         `<rect x="-1" y="-1" width="2" height="2" transform="scale(${this.rPixels})"/>`
       );
+    } else if (this.view.model.get('shape') === 'none') {
+      this.selLens.html('');
     }
   }
 }

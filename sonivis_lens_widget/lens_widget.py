@@ -14,6 +14,8 @@ from ._frontend import module_name, module_version
 import pandas as pd
 import numpy as np
 
+ALLOWED_SHAPES = ['circle', 'square', 'none']
+
 
 @register
 class LensWidget(DOMWidget):
@@ -77,8 +79,8 @@ class LensWidget(DOMWidget):
     @validate('shape')
     def _valid_shape(self, proposal):
         # print('§§lens§§ check x')
-        if not (proposal['value'] == 'circle' or proposal['value'] == 'square'):
-            raise TraitError('The shape can only be \'circle\' or \'square\'.')
+        if not (proposal['value'] in ALLOWED_SHAPES):
+            raise TraitError('The shape can only be: ' + ALLOWED_SHAPES)
         return proposal['value']
 
     @validate('data')
@@ -138,6 +140,11 @@ class LensWidget(DOMWidget):
         This will call the callbacks registered to the clicked lens
         widget instance.
         """
+
+        if self.shape == 'none':
+            # no event if lens is disabled by 'shape = none'
+            return
+
         xRel = self.data[self.x_field] - x
         xRad = edgeX - x
         yRel = self.data[self.y_field] - y

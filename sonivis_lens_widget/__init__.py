@@ -4,7 +4,7 @@
 # Copyright (c) Alexander Rind & the SoniVis team.
 # Distributed under the terms of the MIT License (see LICENSE.txt).
 
-from .lens_widget import LensWidget
+from .lens_widget import LensWidget, ALLOWED_SHAPES
 from ._version import __version__, version_info
 
 def _jupyter_labextension_paths():
