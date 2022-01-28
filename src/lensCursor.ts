@@ -30,8 +30,6 @@ export class LensCursor {
       .attr('transform', 'translate(0, 0)');
     this.updateLensShape();
     this.view.model.on('change:shape', () => this.updateLensShape(), this.view);
-    this.updateLensSize();
-    this.view.model.on('change:size', () => this.updateLensSize(), this.view);
 
     // add invisible rect to track mouse position (as last svg element)
     this.selOverlay = gPlot
@@ -96,18 +94,23 @@ export class LensCursor {
 
     this.updateSubstrateSize();
     this.view.model.on(
-      'change:substrate_width change:substrate_width',
+      'change:substrate_width change:substrate_height',
       () => this.updateSubstrateSize(),
       this.view
     );
+
+    this.updateLensSize();
+    this.view.model.on('change:size', () => this.updateLensSize(), this.view);
   }
 
   private updateSubstrateSize() {
     const substWidth = this.view.model.get('substrate_width') as number;
-    const substHeight = this.view.model.get('substrate_width') as number;
+    const substHeight = this.view.model.get('substrate_height') as number;
     this.selOverlay.attr('width', substWidth);
     this.selOverlay.attr('height', substHeight);
     this.smallerSize = Math.min(substWidth, substHeight);
+
+    this.updateLensSize();
   }
 
   private updateLensSize() {

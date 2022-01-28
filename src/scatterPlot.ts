@@ -5,8 +5,6 @@ import { DOMWidgetView } from '@jupyter-widgets/base';
 import * as d3 from 'd3';
 import { LensCursor } from './lensCursor';
 
-// const width = 400;
-// const height = 400;
 const MARGIN = { top: 20, right: 10, bottom: 30, left: 30 };
 const MARK_RADIUS = 2;
 
@@ -43,7 +41,7 @@ export class ScatterPlot {
 
     this.updateSubstrateSize();
     this.view.model.on(
-      'change:substrate_width change:substrate_width',
+      'change:substrate_width change:substrate_height',
       () => this.updateSubstrateSize(),
       this.view
     );
@@ -56,7 +54,7 @@ export class ScatterPlot {
 
   private updateSubstrateSize() {
     const substWidth = this.view.model.get('substrate_width') as number;
-    const substHeight = this.view.model.get('substrate_width') as number;
+    const substHeight = this.view.model.get('substrate_height') as number;
 
     const selSvg = d3
       .select(this.view.el)
@@ -73,7 +71,7 @@ export class ScatterPlot {
 
   public updateScatterPlotData(): void {
     const substWidth = this.view.model.get('substrate_width') as number;
-    const substHeight = this.view.model.get('substrate_width') as number;
+    const substHeight = this.view.model.get('substrate_height') as number;
 
     const xValues = this.view.model.get('_marks_x') as number[];
     const yValues = this.view.model.get('_marks_y') as number[];
