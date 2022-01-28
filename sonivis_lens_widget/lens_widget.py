@@ -14,7 +14,7 @@ from ._frontend import module_name, module_version
 import pandas as pd
 import numpy as np
 
-ALLOWED_SHAPES = ['circle', 'square', 'none']
+ALLOWED_SHAPES = ['circle', 'square', 'xonly', 'yonly', 'none']
 
 
 @register
@@ -156,6 +156,10 @@ class LensWidget(DOMWidget):
             distances = np.sqrt(xRel**2 / xRad**2 + yRel**2 / yRad**2)
             # filtered = self.data.loc[distances <= 1]
             # self._lens_click_handlers(self, x, y, filtered, distances)
+        if self.shape == 'xonly':
+            distances = xRel.abs() / xRad
+        if self.shape == 'yonly':
+            distances = yRel.abs() / yRad
         else:
             raise TraitError('Other lens shape not supported yet')
 

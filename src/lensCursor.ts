@@ -23,7 +23,17 @@ export class LensCursor {
   ) {
     this.view = view;
 
+    // prepare a clip-path, which will be defined in updateSubstrateSize()
+    d3.select(this.view.el)
+      .select('svg')
+      .append('defs')
+      .append('clipPath')
+      .attr('id', 'clip-substrate');
+
     this.selLens = gPlot
+      .append('g')
+      .attr('clip-path', 'url(#clip-substrate)')
+      // clipping must happen before translation
       .append('g')
       .classed('cursor lens', true)
       .style('opacity', 0)
@@ -108,6 +118,13 @@ export class LensCursor {
     const substHeight = this.view.model.get('substrate_height') as number;
     this.selOverlay.attr('width', substWidth);
     this.selOverlay.attr('height', substHeight);
+
+    d3.select(this.view.el)
+      .select('#clip-substrate')
+      .html(
+        `<rect x="0" y="0" width="${substWidth}" height="${substHeight}" />`
+      );
+
     this.smallerSize = Math.min(substWidth, substHeight);
 
     this.updateLensSize();
@@ -131,6 +148,14 @@ export class LensCursor {
     } else if (this.view.model.get('shape') === 'square') {
       this.selLens.html(
         `<rect x="-1" y="-1" width="2" height="2" transform="scale(${this.rPixels})"/>`
+      );
+    } else if (this.view.model.get('shape') === 'xonly') {
+      this.selLens.html(
+        `<rect x="-1" y="-40000" width="2" height="80000" transform="scale(${this.rPixels})"/>`
+      );
+    } else if (this.view.model.get('shape') === 'yonly') {
+      this.selLens.html(
+        `<rect x="-40000" y="-1" width="80000" height="2" transform="scale(${this.rPixels})"/>`
       );
     } else if (this.view.model.get('shape') === 'none') {
       this.selLens.html('');
