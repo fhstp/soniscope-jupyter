@@ -9,7 +9,7 @@ jupyter widget that shows a scatter plot with a lens and fires an event with fil
 """
 
 from ipywidgets import DOMWidget, CallbackDispatcher, register
-from traitlets import Unicode, Instance, List, Float, observe, validate, TraitError
+from traitlets import Unicode, Instance, List, Int, Float, observe, validate, TraitError
 from ._frontend import module_name, module_version
 import pandas as pd
 import numpy as np
@@ -27,6 +27,10 @@ class LensWidget(DOMWidget):
     _view_module = Unicode(module_name).tag(sync=True)
     _view_module_version = Unicode(module_version).tag(sync=True)
 
+    substrate_width = Int(500).tag(sync=True)
+    """ width of the widget's substrate (i.e., the area between axes, where marks are plotted) """
+    substrate_height = Int(500).tag(sync=True)
+    """ height of the widget's substrate (i.e., the area between axes, where marks are plotted) """
     size = Float(0.1).tag(sync=True)
     """ size of the lens relative to smallest side of the widget """
     shape = Unicode('circle').tag(sync=True)

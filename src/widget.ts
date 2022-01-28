@@ -30,6 +30,8 @@ export class LensModel extends DOMWidgetModel {
       _marks_y: [] as number[],
       size: 0.1,
       shape: 'circle',
+      width: 500,
+      height: 500,
     };
   }
 
@@ -47,19 +49,10 @@ export class LensModel extends DOMWidgetModel {
 }
 
 export class LensView extends DOMWidgetView {
-  private scatterPlot: ScatterPlot;
+  // private scatterPlot: ScatterPlot;
 
   render(): void {
-    this.scatterPlot = new ScatterPlot(this);
-
-    this.value_changed();
-    this.model.on('change:_marks_x', this.value_changed, this);
-    this.model.on('change:_marks_y', this.value_changed, this);
-  }
-
-  value_changed(): void {
-    // console.log('field ' + this.model.get('x_field'));
-    // console.log(this.model.get('_marks_x'));
-    this.scatterPlot.updateScatterPlot(this);
+    // this.scatterPlot =
+    new ScatterPlot(this);
   }
 }

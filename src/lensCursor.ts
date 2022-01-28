@@ -9,6 +9,7 @@ const DEFAULT_OPACITY = 0.3;
 export class LensCursor {
   private view: DOMWidgetView;
   private selLens: any;
+  private selOverlay: any;
 
   private smallerSize = 100;
   private rPixels = 10;
@@ -18,12 +19,9 @@ export class LensCursor {
 
   constructor(
     view: DOMWidgetView,
-    gPlot: d3.Selection<SVGGElement, any, any, any>,
-    areaWidth: number,
-    areaHeight: number
+    gPlot: d3.Selection<SVGGElement, any, any, any>
   ) {
     this.view = view;
-    this.smallerSize = Math.min(areaWidth, areaHeight);
 
     this.selLens = gPlot
       .append('g')
@@ -36,13 +34,10 @@ export class LensCursor {
     this.view.model.on('change:size', () => this.updateLensSize(), this.view);
 
     // add invisible rect to track mouse position (as last svg element)
-    gPlot
+    this.selOverlay = gPlot
       .append('rect')
       .classed('cursor overlay', true)
       .attr('x', 0)
-      .attr('width', areaWidth)
-      .attr('y', 0)
-      .attr('height', areaHeight)
       // .on('touchstart', (event) => event.preventDefault())
       .on('mouseenter', () => {
         this.selLens.style('opacity', DEFAULT_OPACITY);
@@ -98,6 +93,21 @@ export class LensCursor {
       });
 
     // TODO change lense size by multi-touch cp. <https://observablehq.com/@d3/multitouch#cell-308>
+
+    this.updateSubstrateSize();
+    this.view.model.on(
+      'change:substrate_width change:substrate_width',
+      () => this.updateSubstrateSize(),
+      this.view
+    );
+  }
+
+  private updateSubstrateSize() {
+    const substWidth = this.view.model.get('substrate_width') as number;
+    const substHeight = this.view.model.get('substrate_width') as number;
+    this.selOverlay.attr('width', substWidth);
+    this.selOverlay.attr('height', substHeight);
+    this.smallerSize = Math.min(substWidth, substHeight);
   }
 
   private updateLensSize() {
