@@ -141,6 +141,9 @@ class LensWidget(DOMWidget):
         widget instance.
         """
 
+        if (self.x_field == '') | (self.y_field == ''):
+            raise TraitError('At least one axis is undefined.')
+
         if self.shape == 'none':
             # no event if lens is disabled by 'shape = none'
             return
@@ -156,12 +159,12 @@ class LensWidget(DOMWidget):
             distances = np.sqrt(xRel**2 / xRad**2 + yRel**2 / yRad**2)
             # filtered = self.data.loc[distances <= 1]
             # self._lens_click_handlers(self, x, y, filtered, distances)
-        if self.shape == 'xonly':
+        elif self.shape == 'xonly':
             distances = xRel.abs() / xRad
-        if self.shape == 'yonly':
+        elif self.shape == 'yonly':
             distances = yRel.abs() / yRad
         else:
-            raise TraitError('Other lens shape not supported yet')
+            raise TraitError('Other lens shape not supported yet.')
 
         filtered = self.data.loc[distances <= 1]
         self._lens_click_handlers(self, x, y, filtered, distances)
