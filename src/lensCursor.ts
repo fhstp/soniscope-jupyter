@@ -19,20 +19,16 @@ export class LensCursor {
 
   constructor(
     view: DOMWidgetView,
-    gPlot: d3.Selection<SVGGElement, any, any, any>
+    gPlot: d3.Selection<SVGGElement, any, any, any>,
+    clipPath: string
   ) {
     this.view = view;
 
-    // prepare a clip-path, which will be defined in updateSubstrateSize()
-    d3.select(this.view.el)
-      .select('svg')
-      .append('defs')
-      .append('clipPath')
-      .attr('id', 'clip-substrate');
-
     this.selLens = gPlot
       .append('g')
-      .attr('clip-path', 'url(#clip-substrate)')
+      // .attr('clip-path', 'url(#clip-substrate)')
+      .style('clip-path', clipPath)
+      // .attr('clip-path', 'inset(0px 40px 50px 0px) view-box')
       // clipping must happen before translation
       .append('g')
       .classed('cursor lens', true)
@@ -118,12 +114,6 @@ export class LensCursor {
     const substHeight = this.view.model.get('substrate_height') as number;
     this.selOverlay.attr('width', substWidth);
     this.selOverlay.attr('height', substHeight);
-
-    d3.select(this.view.el)
-      .select('#clip-substrate')
-      .html(
-        `<rect x="0" y="0" width="${substWidth}" height="${substHeight}" />`
-      );
 
     this.smallerSize = Math.min(substWidth, substHeight);
 

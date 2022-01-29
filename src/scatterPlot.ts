@@ -37,7 +37,8 @@ export class ScatterPlot {
     // add the Y axis
     g.append('g').attr('class', 'y axis').call(d3.axisLeft(y));
 
-    this.lensCursor = new LensCursor(view, g);
+    const clipPath = `inset(0px ${MARGIN.right + MARGIN.left}px ${MARGIN.bottom + MARGIN.top}px 0px) view-box`;
+    this.lensCursor = new LensCursor(view, g, clipPath);
 
     this.updateSubstrateSize();
     this.view.model.on(
