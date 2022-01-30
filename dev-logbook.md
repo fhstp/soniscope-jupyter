@@ -219,11 +219,15 @@ twine upload dist/sonivis_lens_widget-0.1.2.dev0*
 - [X] include distance in triggered event
 - [X] calculate distance in terms of a growing rectangle
 - [X] rename diameter to size
+- [X] change widget size (actually width & height of spatial substrate)
+- [X] lense shape none
+- [X] lense shape xonly and yonly
+- [ ] heatmap
 
 Bugfixes
 
 - [ ] bei touch auch die Linsenposition setzen ODER linsen verschiebung auch bei touch move
-- [ ] mousewheel triggers scroll on Firefox ()
+- [ ] mousewheel triggers scroll on Firefox
 
 ## Step ...: continuous events using dragging
 
