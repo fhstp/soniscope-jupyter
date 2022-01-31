@@ -18,6 +18,7 @@ shape
 shape of the lens cursor.
 
 Supported values:
+
 * `'circle'`: circular lens around the mouse pointer
 * `'square'`: square lens around the mouse pointer
 * `'xonly'`: lens follows mouse pointer along x-axis and extends to all values along the y-axis
