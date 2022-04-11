@@ -28,7 +28,8 @@
 
 .cursor.lens * {
   stroke: none;
-  fill: rgb(0, 0, 165);
+  fill: #3f3f3f;
+  /* fill: rgb(0, 0, 165);  */
   /* opacity: 0; */
 }
 

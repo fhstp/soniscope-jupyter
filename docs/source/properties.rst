@@ -13,6 +13,15 @@ x_field, y_field
 column name to use for x-axis resp. y-axis.
 While it is an empty string no marks are rendered/updated.
 
+color_field
+-----
+column name to use for a categorical color encoding.
+While it is an empty string all marks are rendered in the same color.
+The palette uses the default colors from `Vega Lite`_ and Tableau_.
+
+.. _`Vega Lite`: https://vega.github.io/vega-lite/docs/scale.html#scheme
+.. _Tableau: https://www.tableau.com/about/blog/2016/7/colors-upgrade-tableau-10-56782
+
 shape
 -----
 shape of the lens cursor.

@@ -5,7 +5,7 @@ import { DOMWidgetView } from '@jupyter-widgets/base';
 import * as d3 from 'd3';
 import { LensCursor } from './lensCursor';
 
-const MARGIN = { top: 20, right: 10, bottom: 30, left: 30 };
+const MARGIN = { top: 18, right: 30, bottom: 30, left: 30 };
 const MARK_RADIUS = 2;
 
 export class ScatterPlot {
@@ -37,6 +37,13 @@ export class ScatterPlot {
     // add the Y axis
     g.append('g').attr('class', 'y axis').call(d3.axisLeft(y));
 
+    // add the color legend
+    g.append('g')
+      .attr('id', 'legend')
+      .append('text')
+      .classed('label', true)
+      .style('text-anchor', 'end');
+
     this.lensCursor = new LensCursor(view, g);
 
     this.updateSubstrateSize();
@@ -46,7 +53,7 @@ export class ScatterPlot {
       this.view
     );
     this.view.model.on(
-      'change:_marks_x change:_marks_y',
+      'change:_marks_x change:_marks_y change:_marks_color',
       this.updateScatterPlotData,
       this
     );
@@ -66,6 +73,10 @@ export class ScatterPlot {
       .select('.x.axis')
       .attr('transform', 'translate(0,' + substHeight + ')');
 
+    selSvg
+      .select('#legend')
+      .attr('transform', 'translate(' + (substWidth + MARGIN.right) + ', -2)');
+
     this.updateScatterPlotData();
   }
 
@@ -75,6 +86,7 @@ export class ScatterPlot {
 
     const xValues = this.view.model.get('_marks_x') as number[];
     const yValues = this.view.model.get('_marks_y') as number[];
+    const cValues = this.view.model.get('_marks_color') as string[];
 
     // set the scales
     const xScale = prepareScale(xValues, [0, substWidth]);
@@ -82,6 +94,20 @@ export class ScatterPlot {
     this.lensCursor.transform = (x: number, y: number) => {
       return { x: xScale.invert(x), y: yScale.invert(y) };
     };
+
+    // const colorValues = [...new Set(cValues)];
+    const colorValues = d3
+      .rollups(
+        cValues,
+        (v) => v.length,
+        (d) => d
+      )
+      .sort((a, b) => (a[1] < b[1] ? 1 : -1))
+      .map((v) => v[0]);
+    // console.log(colorValues);
+    // a.last_nom.localeCompare(b.last_nom))
+
+    const colorScale = d3.scaleOrdinal(d3.schemeTableau10).domain(colorValues);
 
     // console.log('%% length x: ' + xValues.length + ' , y: ' + yValues.length);
 
@@ -95,6 +121,7 @@ export class ScatterPlot {
       .join('circle')
       .classed('dot', true)
       .attr('r', MARK_RADIUS)
+      .attr('fill', (d, i) => colorScale(cValues[i]))
       .attr('cx', (d, i) => xScale(xValues[i]))
       .attr('cy', (d, i) => yScale(yValues[i]));
 
@@ -107,7 +134,7 @@ export class ScatterPlot {
       .attr('class', 'x label')
       // .attr("transform", "rotate(-90)")
       .attr('y', substHeight + 26)
-      .attr('x', substWidth + MARGIN.right)
+      .attr('x', substWidth + MARGIN.right / 2)
       .style('text-anchor', 'end')
       .text((d) => d);
 
@@ -123,6 +150,30 @@ export class ScatterPlot {
       .attr('x', -MARGIN.left)
       .style('text-anchor', 'start')
       .text((d) => d);
+
+    // update the legend
+    const gLegend = gSubstrate.select('g#legend');
+    gLegend.select('text.label').text(this.view.model.get('color_field'));
+
+    gLegend
+      .selectAll('text.axis')
+      .data(colorValues)
+      .join('text')
+      .attr('class', 'axis')
+      .text((d: string) => d)
+      .style('text-anchor', 'end')
+      .attr('x', '-8')
+      .attr('y', (d, i) => i * 14 + 14);
+
+    gLegend
+      .selectAll('rect')
+      .data(colorValues)
+      .join('rect')
+      .attr('x', '-6')
+      .attr('y', (d, i) => i * 14 + 7)
+      .attr('width', '6')
+      .attr('height', '6')
+      .style('fill', (d: string) => colorScale(d));
   }
 }
 
