@@ -162,17 +162,17 @@ export class ScatterPlot {
       .attr('class', 'axis')
       .text((d: string) => d)
       .style('text-anchor', 'end')
-      .attr('x', '-8')
+      .attr('x', '-9')
       .attr('y', (d, i) => i * 14 + 14);
 
     gLegend
       .selectAll('rect')
       .data(colorValues)
       .join('rect')
-      .attr('x', '-6')
+      .attr('x', '-7')
       .attr('y', (d, i) => i * 14 + 7)
-      .attr('width', '6')
-      .attr('height', '6')
+      .attr('width', '7')
+      .attr('height', '7')
       .style('fill', (d: string) => colorScale(d));
   }
 }
