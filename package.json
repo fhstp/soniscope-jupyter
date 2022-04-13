@@ -1,6 +1,6 @@
 {
   "name": "sonivis-lens-widget",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "jupyter notebook widget with a scatter plot and an interactive lens",
   "keywords": [
     "jupyter",
