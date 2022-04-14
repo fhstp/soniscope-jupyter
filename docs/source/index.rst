@@ -1,22 +1,22 @@
 
-sonivis_lens_widget
+soniscope_jupyter
 =====================================
 
 Version: |release|
 
-jupyter notebook widget with a scatter plot and an interactive lens
+A Custom Jupyter Widget Library
 
 
 Quickstart
 ----------
 
-To get started with sonivis_lens_widget, install with pip::
+To get started with soniscope_jupyter, install with pip::
 
-    pip install sonivis_lens_widget
+    pip install soniscope_jupyter
 
 or with conda::
 
-    conda install sonivis_lens_widget
+    conda install soniscope_jupyter
 
 
 Contents

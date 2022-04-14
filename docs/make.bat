@@ -9,7 +9,7 @@ if "%SPHINXBUILD%" == "" (
 )
 set SOURCEDIR=source
 set BUILDDIR=build
-set SPHINXPROJ=sonivis_lens_widget
+set SPHINXPROJ=soniscope_jupyter
 
 if "%1" == "" goto help
 

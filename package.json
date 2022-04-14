@@ -1,7 +1,7 @@
 {
-  "name": "sonivis-lens-widget",
+  "name": "soniscope-jupyter",
   "version": "0.1.4",
-  "description": "jupyter notebook widget with a scatter plot and an interactive lens",
+  "description": "jupyter notebook widget with a scatter plot and an interactive lens to enable interactive sonification",
   "keywords": [
     "jupyter",
     "jupyterlab",
@@ -13,9 +13,9 @@
     "dist/*.js",
     "css/*.css"
   ],
-  "homepage": "https://github.com/fhstp/sonivis-lens-widget",
+  "homepage": "https://github.com/fhstp/soniscope-jupyter",
   "bugs": {
-    "url": "https://github.com/fhstp/sonivis-lens-widget/issues"
+    "url": "https://github.com/fhstp/soniscope-jupyter/issues"
   },
   "license": "MIT",
   "author": {
@@ -23,13 +23,14 @@
     "url": "https://github.com/alex-rind/"
   },
   "contributors": [
+    "Kajetan Enge",
     "SoniVis project (https://research.fhstp.ac.at/en/projects/sonivis-data-analytics-using-sonification-and-visualization)"
   ],
   "main": "lib/index.js",
   "types": "./lib/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/fhstp/sonivis-lens-widget"
+    "url": "https://github.com/fhstp/soniscope-jupyter"
   },
   "scripts": {
     "build": "npm run build:lib && npm run build:nbextension && npm run build:labextension:dev",
@@ -41,7 +42,7 @@
     "clean": "npm run clean:lib && npm run clean:nbextension && npm run clean:labextension",
     "clean:lib": "rimraf lib",
     "clean:labextension": "rimraf sonivis_lens_widget/labextension",
-    "clean:nbextension": "rimraf sonivis_lens_widget/nbextension/static/index.js",
+    "clean:nbextension": "rimraf soniscope_jupyter/nbextension/static/index.js",
     "lint": "eslint . --ext .ts,.tsx --fix",
     "lint:check": "eslint . --ext .ts,.tsx",
     "prepack": "npm run build:lib",
@@ -88,7 +89,7 @@
   },
   "jupyterlab": {
     "extension": "lib/plugin",
-    "outputDir": "sonivis_lens_widget/labextension/",
+    "outputDir": "soniscope_jupyter/labextension/",
     "sharedPackages": {
       "@jupyter-widgets/base": {
         "bundled": false,

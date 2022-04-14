@@ -26,7 +26,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 
 
 # The name of the project
-name = 'sonivis_lens_widget'
+name = 'soniscope_jupyter'
 
 # Get the version
 version = get_version(pjoin(name, '_version.py'))
@@ -48,10 +48,10 @@ package_data_spec = {
 
 
 data_files_spec = [
-    ('share/jupyter/nbextensions/sonivis_lens_widget', 'sonivis_lens_widget/nbextension', '**'),
-    ('share/jupyter/labextensions/sonivis-lens-widget', 'sonivis_lens_widget/labextension', '**'),
-    ('share/jupyter/labextensions/sonivis-lens-widget', '.', 'install.json'),
-    ('etc/jupyter/nbconfig/notebook.d', '.', 'sonivis_lens_widget.json'),
+    ('share/jupyter/nbextensions/soniscope_jupyter', 'soniscope_jupyter/nbextension', '**'),
+    ('share/jupyter/labextensions/soniscope-jupyter', 'soniscope_jupyter/labextension', '**'),
+    ('share/jupyter/labextensions/soniscope-jupyter', '.', 'install.json'),
+    ('etc/jupyter/nbconfig/notebook.d', '.', 'soniscope_jupyter.json'),
 ]
 
 
@@ -66,14 +66,14 @@ cmdclass['jsdeps'] = skip_if_exists(jstargets, npm_install)
 
 setup_args = dict(
     name            = name,
-    description     = 'jupyter notebook widget with a scatter plot and an interactive lens',
+    description     = 'jupyter notebook widget with a scatter plot and an interactive lens to enable interactive sonification ',
     version         = version,
     scripts         = glob(pjoin('scripts', '*')),
     cmdclass        = cmdclass,
     packages        = find_packages(),
     author          = 'Alexander Rind & the SoniVis team',
     author_email    = '',
-    url             = 'https://github.com/fhstp/sonivis-lens-widget',
+    url             = 'https://github.com/fhstp/soniscope-jupyter',
     license         = 'MIT',
     platforms       = "Linux, Mac OS X, Windows",
     keywords        = ['Jupyter', 'Widgets', 'IPython'],

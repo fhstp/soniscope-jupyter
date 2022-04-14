@@ -1,38 +1,34 @@
 
-# sonivis-lens-widget
+# soniscope-jupyter
 
-[![Build Status](https://travis-ci.org/fhstp/sonivis-lens-widget.svg?branch=master)](https://travis-ci.org/fhstp/sonivis_lens_widget)
-[![codecov](https://codecov.io/gh/fhstp/sonivis-lens-widget/branch/master/graph/badge.svg)](https://codecov.io/gh/fhstp/sonivis-lens-widget)
-
-
-jupyter notebook widget with a scatter plot and an interactive lens
+jupyter notebook widget with a scatter plot and an interactive lens to enable interactive sonification
 
 ## Installation
 
 You can install using `pip`:
 
 ```bash
-pip install sonivis_lens_widget
+pip install soniscope_jupyter
 ```
 
 If you are using Jupyter Notebook 5.2 or earlier, you may also need to enable
 the nbextension:
 ```bash
-jupyter nbextension enable --py [--sys-prefix|--user|--system] sonivis_lens_widget
+jupyter nbextension enable --py [--sys-prefix|--user|--system] soniscope_jupyter
 ```
 
 You can upgrade using `pip`:
 
 ```bash
-pip install sonivis_lens_widget --upgrade --upgrade-strategy only-if-needed
+pip install soniscope_jupyter --upgrade --upgrade-strategy only-if-needed
 ```
 
 ## Development Installation
 
 Create a dev environment:
 ```bash
-conda create -n sonivis_lens_widget-dev -c conda-forge nodejs yarn python jupyterlab
-conda activate sonivis_lens_widget-dev
+conda create -n soniscope_jupyter-dev -c conda-forge nodejs yarn python jupyterlab
+conda activate soniscope_jupyter-dev
 ```
 or
 ```bash
@@ -57,8 +53,8 @@ npm run build
 For classic notebook, you need to run:
 
 ```
-jupyter nbextension install --sys-prefix --symlink --overwrite --py sonivis_lens_widget
-jupyter nbextension enable --sys-prefix --py sonivis_lens_widget
+jupyter nbextension install --sys-prefix --symlink --overwrite --py soniscope_jupyter
+jupyter nbextension enable --sys-prefix --py soniscope_jupyter
 ```
 
 Note that the `--symlink` flag doesn't work on Windows, so you will here have to run

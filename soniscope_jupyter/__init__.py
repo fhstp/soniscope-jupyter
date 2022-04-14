@@ -21,7 +21,7 @@ def _jupyter_labextension_paths():
     """
     return [{
         'src': 'labextension',
-        'dest': 'sonivis-lens-widget',
+        'dest': 'soniscope-jupyter',
     }]
 
 
@@ -44,6 +44,6 @@ def _jupyter_nbextension_paths():
     return [{
         'section': 'notebook',
         'src': 'nbextension',
-        'dest': 'sonivis_lens_widget',
-        'require': 'sonivis_lens_widget/extension'
+        'dest': 'soniscope_jupyter',
+        'require': 'soniscope_jupyter/extension'
     }]

@@ -1,2 +1,2 @@
 [run]
-omit = sonivis_lens_widget/tests/*
+omit = soniscope_jupyter/tests/*

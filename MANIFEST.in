@@ -8,7 +8,7 @@ include .coverage.rc
 include tsconfig.json
 include package.json
 include webpack.config.js
-include sonivis_lens_widget/labextension/*.tgz
+include soniscope_jupyter/labextension/*.tgz
 
 # Documentation
 graft docs
@@ -25,7 +25,7 @@ graft tests
 prune tests/build
 
 # Javascript files
-graft sonivis_lens_widget/nbextension
+graft soniscope_jupyter/nbextension
 graft src
 graft css
 prune **/node_modules

@@ -4,7 +4,7 @@
 # You can set these variables from the command line.
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
-SPHINXPROJ    = sonivis_lens_widget
+SPHINXPROJ    = soniscope_jupyter
 SOURCEDIR     = source
 BUILDDIR      = build
 

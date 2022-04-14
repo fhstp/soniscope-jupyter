@@ -1,5 +1,5 @@
 
-name: sonivis_lens_widget_docs
+name: soniscope_jupyter_docs
 channels:
   - conda-forge
 dependencies:

@@ -146,12 +146,12 @@ $RECYCLE.BIN/
 # ----
 
 **/node_modules/
-sonivis_lens_widget/nbextension/index.*
-sonivis_lens_widget/labextension/*.tgz
+soniscope_jupyter/nbextension/index.*
+soniscope_jupyter/labextension/*.tgz
 
 # Coverage data
 # -------------
 **/coverage/
 
 # Packed lab extensions
-sonivis_lens_widget/labextension
+soniscope_jupyter/labextension

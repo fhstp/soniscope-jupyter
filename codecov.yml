@@ -9,4 +9,4 @@ coverage:
       default:
         target: 0%
 ignore:
-  - "sonivis_lens_widget/tests"
+  - "soniscope_jupyter/tests"

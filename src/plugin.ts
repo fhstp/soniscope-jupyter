@@ -11,7 +11,7 @@ import * as widgetExports from './widget';
 
 import { MODULE_NAME, MODULE_VERSION } from './version';
 
-const EXTENSION_ID = 'sonivis-lens-widget:plugin';
+const EXTENSION_ID = 'soniscope-jupyter:plugin';
 
 /**
  * The example plugin.
