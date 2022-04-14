@@ -41,8 +41,6 @@ class LensWidget(DOMWidget):
     """ column name used for x axis. While it is an empty string no marks are rendered/updated. """
     y_field = Unicode('').tag(sync=True)
     """ column name used for y axis. While it is an empty string no marks are rendered/updated. """
-    color_field = Unicode('').tag(sync=True)
-    """ column name used for a categorical color encoding. While it is an empty string all marks are rendered in the same color. """
     data = Instance(klass=pd.DataFrame)
     """ pandas dataframe to be displayed """
 
@@ -53,8 +51,6 @@ class LensWidget(DOMWidget):
     """ internal data with mark x positions as column vector """
     _marks_y = List(Float()).tag(sync=True)
     """ internal data with mark y positions as column vector """
-    _marks_color = List(Unicode()).tag(sync=True)
-    """ internal data with mark color category as column vector. Entries do not contain the color but original values. """
 
     def __init__(self, data=None, x_field=None, y_field=None, **kwargs):
         super().__init__(**kwargs)
@@ -112,27 +108,12 @@ class LensWidget(DOMWidget):
             raise TraitError('The y field is not a column of the data frame.')
         return proposal['value']
 
-    @validate('color_field')
-    def _valid_color_field(self, proposal):
-        if not (proposal['value'] == '' or proposal['value'] in self.data):
-            raise TraitError(
-                'The color field is not a column of the data frame.')
-        return proposal['value']
-
     @observe('data')
     def _observe_data(self, change):
         # print('§§lens§§ update data')
         if self.x_field != '' and self.y_field != '':
             self._marks_x = change.new[self.x_field].tolist()
             self._marks_y = change.new[self.y_field].tolist()
-
-    @observe('color_field')
-    def _observe_color_field(self, change):
-        # print('§§lens§§ update field ' + change.name + ' to ' + change.new)
-        if change.new != '':
-            self._marks_color = self.data[change.new].astype(str).tolist()
-        else:
-            self._marks_color = []
 
     @observe('x_field', 'y_field')
     def _observe_fields(self, change):
