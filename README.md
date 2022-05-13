@@ -80,3 +80,10 @@ After a change wait for the build to finish and then refresh your browser and th
 
 #### Python:
 If you make a change to the python code then you will need to restart the notebook kernel to have it take effect.
+
+## Citation
+
+K. Enge, A. Rind, M. Iber, R. Höldrich & W. Aigner.
+["Towards Multimodal Exploratory Data Analysis: SoniScope as a Prototypical Implementation".]((http://arind.students.fhstp.ac.at/Enge_et_al_2022_SoniScope.pdf))
+In: Proceedings of the 24th Eurographics Conference on Visualization (EuroVis 2022).
+Rome: Eurographics Association, 2022. 5 pages, forthcoming.
