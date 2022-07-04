@@ -104,4 +104,5 @@ If you make a change to the python code then you will need to restart the notebo
 Kajetan Enge, Alexander Rind, Michael Iber, Robert Höldrich, and Wolfgang Aigner.
 ["Towards Multimodal Exploratory Data Analysis: SoniScope as a Prototypical Implementation".](https://doi.org/10.2312/evs.20221095)
 In: Proceedings of the 24th Eurographics Conference on Visualization (EuroVis) – Short Papers, p. 67-71.
-Rome, Eurographics Association, 2022. <https://doi.org/10.2312/evs.20221095>
+Rome, Eurographics Association, 2022. \
+<https://doi.org/10.2312/evs.20221095>

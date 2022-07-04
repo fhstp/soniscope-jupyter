@@ -53,8 +53,8 @@ preferred-citation:
         St. Pölten University of Applied Sciences,
         Austria
       orcid: 'https://orcid.org/0000-0001-5762-1869'
-    type: conference-paper
-    conference:
-      name: "Eurographics Conference on Visualization (EuroVis) – Short Papers"
-    year: 2022
-    doi: 10.2312/evs.20221095
+  type: conference-paper
+  conference:
+    name: "Eurographics Conference on Visualization (EuroVis) – Short Papers"
+  year: 2022
+  doi: 10.2312/evs.20221095
