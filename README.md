@@ -23,6 +23,24 @@ You can upgrade using `pip`:
 pip install soniscope_jupyter --upgrade --upgrade-strategy only-if-needed
 ```
 
+## Demo
+
+Install packages:
+```
+pip install jupyterlab sc3nb
+```
+Download SuperCollider (version 3.12.2) from <https://supercollider.github.io/download> and install it.
+
+Start Jupyter Lab:
+```
+jupyter lab
+```
+
+Open the notebook document [`SoniScope.ipynb`](examples/SoniScope.ipynb).
+
+Run all cells from top to "Ploting the user interface".
+
+
 ## Development Installation
 
 Create a dev environment:
@@ -83,7 +101,7 @@ If you make a change to the python code then you will need to restart the notebo
 
 ## Citation
 
-K. Enge, A. Rind, M. Iber, R. Höldrich & W. Aigner.
-["Towards Multimodal Exploratory Data Analysis: SoniScope as a Prototypical Implementation".](http://arind.students.fhstp.ac.at/Enge_et_al_2022_SoniScope.pdf)
-In: Proceedings of the 24th Eurographics Conference on Visualization (EuroVis 2022).
-Rome: Eurographics Association, 2022. 5 pages, forthcoming.
+Kajetan Enge, Alexander Rind, Michael Iber, Robert Höldrich, and Wolfgang Aigner.
+["Towards Multimodal Exploratory Data Analysis: SoniScope as a Prototypical Implementation".](https://doi.org/10.2312/evs.20221095)
+In: Proceedings of the 24th Eurographics Conference on Visualization (EuroVis) – Short Papers, p. 67-71.
+Rome, Eurographics Association, 2022. <https://doi.org/10.2312/evs.20221095>

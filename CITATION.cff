@@ -1,0 +1,60 @@
+cff-version: 1.2.0
+title: SoniScope
+authors:
+  - given-names: Alexander
+    family-names: Rind
+    affiliation: >-
+      St. Pölten University of Applied Sciences,
+      Austria
+    orcid: 'https://orcid.org/0000-0001-8788-4600'
+  - given-names: Kajetan
+    family-names: Enge
+    affiliation: >-
+      St. Pölten University of Applied Sciences,
+      Austria
+    orcid: 'https://orcid.org/0000-0002-5456-1140'
+message: >-
+  Please cite this software using the metadata from
+  the EuroVis 2022 conference paper in 'preferred-citation'.
+type: software
+preferred-citation:
+  title: >-
+    Towards Multimodal Exploratory Data Analysis:
+    SoniScope as a Prototypical Implementation
+  authors:
+    - given-names: Kajetan
+      family-names: Enge
+      affiliation: >-
+        St. Pölten University of Applied Sciences,
+        Austria
+      orcid: 'https://orcid.org/0000-0002-5456-1140'
+    - given-names: Alexander
+      family-names: Rind
+      affiliation: >-
+        St. Pölten University of Applied Sciences,
+        Austria
+      orcid: 'https://orcid.org/0000-0001-8788-4600'
+    - given-names: Michael
+      family-names: Iber
+      affiliation: >-
+        St. Pölten University of Applied Sciences,
+        Austria
+      orcid: 'https://orcid.org/0000-0002-5929-8716'
+    - given-names: Robert
+      family-names: Höldrich
+      email: robert.hoeldrich@kug.ac.at
+      affiliation: >-
+        University of Music and Performing Arts Graz,
+        Austria
+      orcid: 'https://orcid.org/0000-0002-6887-6637'
+    - given-names: Wolfgang
+      family-names: Aigner
+      affiliation: >-
+        St. Pölten University of Applied Sciences,
+        Austria
+      orcid: 'https://orcid.org/0000-0001-5762-1869'
+    type: conference-paper
+    conference:
+      name: "Eurographics Conference on Visualization (EuroVis) – Short Papers"
+    year: 2022
+    doi: 10.2312/evs.20221095
