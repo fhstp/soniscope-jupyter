@@ -56,5 +56,7 @@ preferred-citation:
   type: conference-paper
   conference:
     name: "Eurographics Conference on Visualization (EuroVis) – Short Papers"
+  collection-title: Proceedings of the Eurographics Conference on Visualization (EuroVis) – Short Papers
+  collection-type: proceedings
   year: 2022
   doi: 10.2312/evs.20221095
