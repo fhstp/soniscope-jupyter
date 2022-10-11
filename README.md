@@ -65,6 +65,7 @@ notebook / lab frontend. For lab, this is done by the command:
 
 ```
 jupyter labextension develop --overwrite .
+# npm install # this might be necessary on a fresh development install
 npm run build
 ```
 
