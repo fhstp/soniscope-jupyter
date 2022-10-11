@@ -94,7 +94,7 @@ setup_args = dict(
     install_requires = [
         'ipywidgets>=7.0.0',
         'pandas>=1.3.0',
-        'numpy>=1.22.0',
+        'numpy>=1.21.0',
     ],
     extras_require = {
         'test': [
@@ -104,6 +104,7 @@ setup_args = dict(
         ],
         'examples': [
             # Any requirements for the examples to run
+            'sc3nb',
         ],
         'docs': [
             'jupyter_sphinx',
