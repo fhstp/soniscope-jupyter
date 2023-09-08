@@ -208,8 +208,9 @@ Events
 Deploy to pypi (cp. <https://towardsdatascience.com/how-to-build-your-first-python-package-6a00b02635c9>):
 
 ```
-pip install twine
-python setup.py sdist bdist_wheel
+pip install twine hatch
+# python setup.py sdist bdist_wheel
+hatch build
 twine check dist/sonivis_lens_widget-0.1.2.dev0*
 twine upload dist/sonivis_lens_widget-0.1.2.dev0*
 ```

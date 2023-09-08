@@ -11,9 +11,12 @@ build-backend = "hatchling.build"
 name = "soniscope-jupyter"
 description = "jupyter notebook widget with a scatter plot and an interactive lens to enable interactive sonification "
 readme = "README.md"
-requires-python = ">=3.6"
+license = "MIT"
+requires-python = ">=3.8"
 authors = [
-    { name = "Alexander Rind & the SoniVis team", email = "" },
+    { name = "Alexander Rind" },
+    { name = "Kajetan Enge" },
+    { name = "SoniVis team" },
 ]
 keywords = [
     "IPython",
@@ -27,10 +30,8 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.4",
-    "Programming Language :: Python :: 3.5",
-    "Programming Language :: Python :: 3.6",
-    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.10",
 ]
 dependencies = [
     "ipywidgets>=7.0.0",
@@ -38,9 +39,6 @@ dependencies = [
     "pandas>=1.3.0",
 ]
 version = "0.1.4.dev0"
-
-[project.license]
-file = "LICENSE.txt"
 
 [project.optional-dependencies]
 docs = [
