@@ -1,6 +1,6 @@
 {
   "name": "soniscope-jupyter",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "jupyter notebook widget with a scatter plot and an interactive lens to enable interactive sonification",
   "keywords": [
     "jupyter",
@@ -41,7 +41,7 @@
     "build:nbextension": "webpack",
     "clean": "npm run clean:lib && npm run clean:nbextension && npm run clean:labextension",
     "clean:lib": "rimraf lib",
-    "clean:labextension": "rimraf sonivis_lens_widget/labextension",
+    "clean:labextension": "rimraf soniscope_jupyter/labextension",
     "clean:nbextension": "rimraf soniscope_jupyter/nbextension/static/index.js",
     "lint": "eslint . --ext .ts,.tsx --fix",
     "lint:check": "eslint . --ext .ts,.tsx",
@@ -60,8 +60,8 @@
     "@babel/core": "^7.5.0",
     "@babel/preset-env": "^7.5.0",
     "@jupyterlab/builder": "^3.0.0",
-    "@phosphor/application": "^1.6.0",
-    "@phosphor/widgets": "^1.6.0",
+    "@lumino/application": "^1.6.0",
+    "@lumino/widgets": "^1.6.0",
     "@types/d3": "^7.1.0",
     "@types/jest": "^26.0.0",
     "@types/webpack-env": "^1.13.6",

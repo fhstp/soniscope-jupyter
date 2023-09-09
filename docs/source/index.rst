@@ -4,7 +4,7 @@ soniscope_jupyter
 
 Version: |release|
 
-A Custom Jupyter Widget Library
+jupyter notebook widget with a scatter plot and an interactive lens to enable interactive sonification
 
 
 Quickstart

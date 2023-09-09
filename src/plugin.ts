@@ -1,9 +1,9 @@
 // Copyright (c) Alexander Rind & the SoniVis team.
 // Distributed under the terms of the MIT License (see LICENSE.txt).
 
-import { Application, IPlugin } from '@phosphor/application';
+import { Application, IPlugin } from '@lumino/application';
 
-import { Widget } from '@phosphor/widgets';
+import { Widget } from '@lumino/widgets';
 
 import { IJupyterWidgetRegistry } from '@jupyter-widgets/base';
 
