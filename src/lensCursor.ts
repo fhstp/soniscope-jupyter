@@ -51,12 +51,12 @@ export class LensCursor {
       .classed('cursor overlay', true)
       .attr('x', 0)
       // .on('touchstart', (event) => event.preventDefault())
-      .on('mouseenter', () => {
-        this.selLens.style('opacity', DEFAULT_OPACITY);
-      })
-      .on('mouseleave', () => {
-        this.selLens.style('opacity', 0);
-      })
+      // .on('mouseenter', () => {
+      //   this.selLens.style('opacity', DEFAULT_OPACITY);
+      // })
+      // .on('mouseleave', () => {
+      //   this.selLens.style('opacity', 0);
+      // })
       .on(
         'wheel',
         (evt: WheelEvent) => {
@@ -74,12 +74,12 @@ export class LensCursor {
         },
         { passive: false }
       )
-      .on('mousemove', (evt: MouseEvent) => {
-        const rawX = d3.pointer(evt)[0];
-        const rawY = d3.pointer(evt)[1];
-        // circle.attr('cx', rawX).attr('cy', rawY);
-        this.selLens.attr('transform', `translate(${rawX}, ${rawY})`);
-      })
+      // .on('mousemove', (evt: MouseEvent) => {
+      //   const rawX = d3.pointer(evt)[0];
+      //   const rawY = d3.pointer(evt)[1];
+      //   // circle.attr('cx', rawX).attr('cy', rawY);
+      //   this.selLens.attr('transform', `translate(${rawX}, ${rawY})`);
+      // })
       // .on('mousedown touchstart', mousedown);
       .on('pointerdown', (evt: PointerEvent) => {
         evt.preventDefault();
@@ -102,6 +102,16 @@ export class LensCursor {
           edgeX: corner.x,
           edgeY: corner.y,
         });
+
+        // lens positioned here
+        this.selLens.attr('transform', `translate(${rawX}, ${rawY})`);
+
+        // lens visible and then fade out
+        this.selLens
+          .style('opacity', DEFAULT_OPACITY)
+          .transition()
+          .duration(400)
+          .style('opacity', 0);
       });
 
     // TODO change lense size by multi-touch cp. <https://observablehq.com/@d3/multitouch#cell-308>
