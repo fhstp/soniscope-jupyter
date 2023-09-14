@@ -1,25 +1,28 @@
 # SoniScope Demo for ERN 2023 using Touch with a Stethoscope
 
+Interactions are captured on `rect.overlay` as defined in `lensCursor.ts`.
+
 ## Classical Interactions
 
-rect.overlay
-  mouseenter  --> lens opacity = default;
-  mouseleave  --> lens opacity = 0;
-  wheel       --> resize lens
-  mousemove 	--> set lens coords
-  pointerdown --> send event (play sonification)
+* mouseenter  --> lens opacity = default
+* mouseleave  --> lens opacity = 0
+* wheel       --> resize lens
+* mousemove 	--> set lens coords
+* mousedown   --> send event (play sonification)
 
-## Stethoscope Interactions
+## Stethoscope Touch Interactions
 
-rect.overlay
-  wheel       --> resize lens
-  pointerdown --> send event (play sonification)
+* touchstart  --> send event (play sonification)
                   set lens coords
-                  lens opacity = default;
-                  transition
-                      lens opacity = 0;
+                  lens opacity = default
+* touchend    --> lens opacity transitions to 0
+* wheel       --> resize lens
 
-## Windows integrated touch feedback
+## Windows Settings
 
-Erleichterte Bedienung > Mauszeiger > Touchfeedback ändern
-<https://www.randombrick.de/windows-10-visuelles-feedback-fuer-touchscreen-deaktivieren/>
+* disable integrated touch feedback:
+  * Erleichterte Bedienung > Mauszeiger > Touchfeedback ändern
+    <https://www.randombrick.de/windows-10-visuelles-feedback-fuer-touchscreen-deaktivieren/>
+* disable long touch as right click
+  * Search "Finger" and open "Fingereingabeeinstellungen" in search results
+* Firefox Web Browser also translates a long touch to a right click independently from Windows.

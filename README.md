@@ -45,7 +45,7 @@ Run all cells from top to "Ploting the user interface".
 
 Create a dev environment:
 ```bash
-conda create -n soniscope_jupyter-dev -c conda-forge nodejs yarn python jupyterlab
+conda create -n soniscope_jupyter-dev -c conda-forge nodejs python jupyterlab
 conda activate soniscope_jupyter-dev
 ```
 or

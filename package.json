@@ -33,12 +33,13 @@
     "url": "https://github.com/fhstp/soniscope-jupyter"
   },
   "scripts": {
-    "build": "npm run build:lib && npm run build:nbextension && npm run build:labextension:dev",
+    "build": "npm run build:lib && npm run build:nbextension:dev && npm run build:labextension:dev",
     "build:prod": "npm run build:lib && npm run build:nbextension && npm run build:labextension",
     "build:labextension": "jupyter labextension build .",
     "build:labextension:dev": "jupyter labextension build --development True .",
     "build:lib": "tsc",
-    "build:nbextension": "webpack",
+    "build:nbextension": "webpack --mode=production",
+    "build:nbextension:dev": "webpack --mode=development",
     "clean": "npm run clean:lib && npm run clean:nbextension && npm run clean:labextension",
     "clean:lib": "rimraf lib",
     "clean:labextension": "rimraf soniscope_jupyter/labextension",
@@ -59,7 +60,7 @@
   "devDependencies": {
     "@babel/core": "^7.5.0",
     "@babel/preset-env": "^7.5.0",
-    "@jupyterlab/builder": "^3.0.0",
+    "@jupyterlab/builder": "^4.0.5",
     "@lumino/application": "^1.6.0",
     "@lumino/widgets": "^1.6.0",
     "@types/d3": "^7.1.0",
