@@ -59,6 +59,7 @@ class LensWidget(DOMWidget):
     def __init__(self, data=None, x_field=None, y_field=None, **kwargs):
         super().__init__(**kwargs)
         self._lens_click_handlers = CallbackDispatcher()
+        self._lens_release_handlers = CallbackDispatcher()
         self.on_msg(self._handle_frontend_msg)
 
         # if isinstance(data, pd.DataFrame) == True:
@@ -188,6 +189,19 @@ class LensWidget(DOMWidget):
         filtered = self.data.loc[distances <= 1]
         self._lens_click_handlers(self, x, y, filtered, distances)
 
+    def on_lens_release(self, callback, remove=False):
+        """Register a callback to execute when the lens widget is released (i.e. the touch has ended).
+        The callback will be called with no arguments.
+        Parameters
+        ----------
+        remove: bool (optional)
+            Set to true to remove the callback from the list of callbacks.
+        """
+        self._lens_release_handlers.register_callback(callback, remove=remove)
+
+    def lens_release(self):
+        self._lens_release_handlers(self)
+
     def _handle_frontend_msg(self, _widget, payload, _buffers):
         """Handle a msg from the front-end.
         Parameters
@@ -197,3 +211,5 @@ class LensWidget(DOMWidget):
         """
         if payload.get('event', '') == 'lens':
             self.lens_click(**payload)
+        elif payload.get('event', '') == 'lens_released':
+            self.lens_release()

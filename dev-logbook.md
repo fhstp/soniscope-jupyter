@@ -215,6 +215,14 @@ twine check dist/soniscope_jupyter-0.1.5*
 twine upload dist/soniscope_jupyter-0.1.5*
 ```
 
+Automated tests (cp. Github build)
+
+```
+npm run lint:check  # wrong TypeScript version? does not matter?
+npm run test
+pytest
+```
+
 ## Step 12: feature requests
 
 - [X] include distance in triggered event
@@ -227,7 +235,7 @@ twine upload dist/soniscope_jupyter-0.1.5*
 
 Bugfixes
 
-- [ ] bei touch auch die Linsenposition setzen ODER linsen verschiebung auch bei touch move
+- [X] bei touch auch die Linsenposition setzen (ODER linsen verschiebung auch bei touch move)
 - [ ] mousewheel triggers scroll on Firefox
 
 ## Step ...: continuous events using dragging

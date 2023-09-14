@@ -80,12 +80,27 @@ export class LensCursor {
         // circle.attr('cx', rawX).attr('cy', rawY);
         this.selLens.attr('transform', `translate(${rawX}, ${rawY})`);
       })
-      // .on('mousedown touchstart', mousedown);
-      .on('pointerdown', (evt: PointerEvent) => {
+      .on('pointerup', () => {
+        view.send({
+          event: 'lens_released',
+        });
+      })
+      .on('touchend', () => {
+        // lens fade out
+        this.selLens.transition().duration(800).style('opacity', 0);
+      })
+      .on('mousedown touchstart', (evt: UIEvent) => {
         evt.preventDefault();
         // recover coordinate we need
-        const rawX = d3.pointer(evt)[0];
-        const rawY = d3.pointer(evt)[1];
+        let rawX = -1;
+        let rawY = -1;
+        if (evt.type === 'touchstart') {
+          rawX = d3.pointers(evt)[0][0];
+          rawY = d3.pointers(evt)[0][1];
+        } else if (evt.type === 'mousedown') {
+          rawX = d3.pointer(evt)[0];
+          rawY = d3.pointer(evt)[1];
+        }
         if (rawX < 0 || rawY < 0) {
           return;
         }
@@ -102,6 +117,12 @@ export class LensCursor {
           edgeX: corner.x,
           edgeY: corner.y,
         });
+
+        // lens positioned here
+        this.selLens.attr('transform', `translate(${rawX}, ${rawY})`);
+
+        // lens visible (fade out after touchend)
+        this.selLens.style('opacity', DEFAULT_OPACITY);
       });
 
     // TODO change lense size by multi-touch cp. <https://observablehq.com/@d3/multitouch#cell-308>

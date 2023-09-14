@@ -45,7 +45,7 @@ Run all cells from top to "Ploting the user interface".
 
 Create a dev environment:
 ```bash
-conda create -n soniscope_jupyter-dev -c conda-forge nodejs yarn python jupyterlab
+conda create -n soniscope_jupyter-dev -c conda-forge nodejs python jupyterlab
 conda activate soniscope_jupyter-dev
 ```
 or
@@ -53,8 +53,11 @@ or
 python -m venv venv
 source venv/Scripts/activate
 python -m pip install -U pip setuptools
-pip install nodejs jupyterlab jupyter-packaging
+pip install nodejs 'jupyterlab==3.6.5' jupyter-packaging
 ```
+
+For a development installation the version of the python package `jupyterlab`
+and the npm package `@jupyterlab/builder` need to match.
 
 Install the python. This will also build the TS package.
 ```bash
