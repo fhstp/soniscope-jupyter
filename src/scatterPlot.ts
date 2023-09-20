@@ -24,7 +24,7 @@ export class ScatterPlot {
       .classed('substrate', true)
       .attr('transform', 'translate(' + MARGIN.left + ',' + MARGIN.top + ')');
 
-    // set the scales
+    // get some temporary scales just for showing axes
     const x = prepareScale([], [0, 100]);
     const y = prepareScale([], [100, 0]);
 

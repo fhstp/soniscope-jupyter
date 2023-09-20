@@ -120,6 +120,28 @@ The frontend `LensView` simply calls:
 ```
 No change in class `LensModel`.
 
+
+### 5b get events from backend to frontend
+
+Jupyter Widgets use Backbone.js but process messages.
+
+You can debug messages received with `all`:
+
+```javascript
+  view.on('all', () => console.log('hello view'));
+  view.model.on('all', (arg) => console.log(arg));
+```
+
+To pass a app specific message use the method `custom`:
+
+```python
+  self.send({'method': 'custom', 'todo': 'highlight', 'idx': idx,})
+```
+
+```javascript
+  view.model.on('msg:custom', (payload) => console.log(payload));
+```
+
 ## Step 6: get mouse events out of LensWidget via event listener
 
 If additional data transformation is needed on the backend side, we can adapt 3 functions from
