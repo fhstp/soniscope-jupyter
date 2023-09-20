@@ -56,6 +56,9 @@ export class LensCursor {
       })
       .on('mouseleave', () => {
         this.selLens.style('opacity', 0);
+        view.send({
+          event: 'lens_released',
+        });
       })
       .on(
         'wheel',

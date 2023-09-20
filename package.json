@@ -1,6 +1,6 @@
 {
   "name": "soniscope-jupyter",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "jupyter notebook widget with a scatter plot and an interactive lens to enable interactive sonification",
   "keywords": [
     "jupyter",
