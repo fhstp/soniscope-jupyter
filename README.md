@@ -1,6 +1,8 @@
 
 # soniscope-jupyter
 
+[![PyPI-Server](https://img.shields.io/pypi/v/soniscope-jupyter.svg)](https://pypi.org/project/soniscope-jupyter/)
+
 jupyter notebook widget with a scatter plot and an interactive lens to enable interactive sonification
 
 ## Installation
