@@ -122,8 +122,8 @@ export class ScatterPlot {
       .classed('dot', true)
       .attr('r', MARK_RADIUS)
       .attr('fill', (d, i) => colorScale(cValues[i]))
-      .attr('cx', (d, i) => xScale(xValues[i]))
-      .attr('cy', (d, i) => yScale(yValues[i]));
+      .attr('cx', (d, i) => (isNaN(xValues[i]) ? -100 : xScale(xValues[i])))
+      .attr('cy', (d, i) => (isNaN(yValues[i]) ? -100 : yScale(yValues[i])));
 
     // update the X Axis
     gSubstrate.select('.x.axis').call(d3.axisBottom(xScale) as any);
