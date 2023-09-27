@@ -6,7 +6,7 @@ define(function() {
     window['requirejs'].config({
         map: {
             '*': {
-                'sonivis-lens-widget': 'nbextensions/sonivis_lens_widget/index',
+                'soniscope-jupyter': 'nbextensions/soniscope_jupyter/index',
             },
         }
     });
