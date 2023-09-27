@@ -26,3 +26,7 @@ Interactions are captured on `rect.overlay` as defined in `lensCursor.ts`.
 * disable long touch as right click
   * Search "Finger" and open "Fingereingabeeinstellungen" in search results
 * Firefox Web Browser also translates a long touch to a right click independently from Windows.
+
+## Jupyter Settings
+
+* set log level to error

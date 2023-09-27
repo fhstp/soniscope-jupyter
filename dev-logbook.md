@@ -229,12 +229,18 @@ Events
 
 Deploy to pypi (cp. <https://towardsdatascience.com/how-to-build-your-first-python-package-6a00b02635c9>):
 
+Bump version in
+- package.json
+- _version.py
+- pyproject.toml
+
 ```
 pip install twine hatch
 # python setup.py sdist bdist_wheel
+npm run build:prod
 hatch build
-twine check dist/soniscope_jupyter-0.1.5*
-twine upload dist/soniscope_jupyter-0.1.5*
+twine check dist/soniscope_jupyter-0.1.8*
+twine upload dist/soniscope_jupyter-0.1.8*
 ```
 
 Automated tests (cp. Github build)
